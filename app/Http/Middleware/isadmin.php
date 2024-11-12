@@ -15,7 +15,7 @@ class isadmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->email === "superadmin@gmail.com"){
+        if (auth()->check() && auth()->user()->email === "superadmin@gmail.com"){
         return $next($request);
 
         }else{
