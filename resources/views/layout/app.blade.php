@@ -29,10 +29,15 @@
       }
     </style>
   </head>
-
+	  <div class="page">
       @include('layout.sidebar')
       @include('layout.header')
+	  <div class="page-wrapper">
 	  @yield('content')
+
+	  </div>
+
+	  </div>
       @include('layout.footer')
 
 	  <script src="{{asset('assets/js/demo-theme.min.js?1692870487')}}"></script>

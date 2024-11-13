@@ -1,6 +1,6 @@
-
+<!-- 
     <script src="{{asset('assets/js/demo-theme.min.js?1692870487')}}"></script>
-<div class="page">
+<div class="page"> -->
       <!-- Sidebar -->
       <aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark">
         <div class="container-fluid">
