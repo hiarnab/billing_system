@@ -32,4 +32,8 @@ Route::get('/course/deactive/{id}',[CourseController::class, 'deactive'])->name(
 Route::get('/login-view',[LoginController::class,'login_view'])->name('login.view');
 Route::post('/loggin',[LoginController::class,'loggedin'])->name('login');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+<<<<<<< HEAD
 // login route
+=======
+// login route
+>>>>>>> 7df7bf5 (commit from kkm)
