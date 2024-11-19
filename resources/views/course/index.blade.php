@@ -1,146 +1,144 @@
-@extends('layout.app')
+@extends('layout.admin.app')
 
 @push('js')
 @endpush
-@push('css')
-@endpush
+
 
 
 @section('content')
-<!doctype html>
-<!--
-* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
-* @version 1.0.0-beta20
-* @link https://tabler.io
-* Copyright 2018-2023 The Tabler Authors
-* Copyright 2018-2023 codecalm.net Paweł Kuna
-* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
--->
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Datatables - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
-  <!-- CSS files -->
-  <link href="{{asset('assets/css/tabler.min.css?1692870487')}}" rel="stylesheet" />
-  <link href="{{asset('assets/css/tabler-flags.min.css?1692870487')}}" rel="stylesheet" />
-  <link href="{{asset('assets/css/tabler-payments.min.css?1692870487')}}" rel="stylesheet" />
-  <link href="{{asset('assets/css/tabler-vendors.min.css?1692870487')}}" rel="stylesheet" />
-  <link href="{{asset('assets/css/demo.min.css?1692870487')}}" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <style>
-    @import url('https://rsms.me/inter/inter.css');
-
-    :root {
-      --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
-    }
-
-    body {
-      font-feature-settings: "cv03", "cv04", "cv11";
-    }
-  </style>
-</head>
-
-<body>
-  <script src="{{asset('assets/js/demo-theme.min.js?1692870487')}}"></script>
-
-  <div class="page">
-    <div class="col d-flex justify-content-end" style="margin-right: 50px; margin-top:25px;">
-      <a href="{{route('course.add')}}" class="btn btn-primary w-80"> <i class="fas fa-plus me-2"></i>Add Course</a>
-    </div>
-    <!-- Navbar -->
     <div class="page-wrapper">
-      <!-- Page header -->
-      <div class="page-header d-print-none">
-        <div class="container-xl">
-          <div class="row g-2 align-items-center">
-            <div class="col">
-              <h2 class="page-title">
-                Course list
-              </h2>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Page body -->
-      <div class="page-body">
-        <div class="container-xl">
-          <div class="card">
-            <div class="card-body">
-              <div id="table-default" class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th><button class="table-sort" data-sort="sort-sl">Sl</button></th>
-                      <th><button class="table-sort" data-sort="sort-name">Name</button></th>
-                      <th><button class="table-sort" data-sort="sort-session">session</button></th>
-                      <th><button class="table-sort" data-sort="sort-duration">Duration </button></th>
-                      <th><button class="table-sort" data-sort="sort-status">status </button></th>
-                      <th><button class="table-sort" data-sort="sort-action">Action</button></th>
-                    </tr>
-                  </thead>
-                  <tbody class="table-tbody">
-                    @foreach($courses as $course)
-                    <tr>
-                      <td>{{$loop->iteration}}</td>
-                      <td class="sort-name">{{$course->name}}</td>
-                      <td class="sort-city">{{$course->session}}</td>
-                      <td class="sort-type">{{$course->duration}}</td>
-                      <td class="sort-score">{{$course->status}}</td>
-                      <td>
-                        <div class="button-list">
-                          <a href="{{route('course.view', $course->id)}}" class="btn btn-primary">View</a>
+        <!-- Page header -->
+        <div class="page-header d-print-none">
+            <div class="container-xl">
+                <div class="row g-2 align-items-center">
+                    <div class="col">
+                        <!-- Page pre-title -->
+                        <div class="page-pretitle">
+                            Settings
                         </div>
-                        <div class="button-list">
-                          <a href="{{route('course.edit', $course->id)}}" class="btn btn-success">Edit</a>
-                        </div>
-                        <div class="button-list">
-                          <a href="#" class="btn btn-danger">Delete</a>
-                        </div>
-                        @if($course->status === 'active')
-                        <a href="{{ route('deactive.course', $course->id) }}" class="btn btn-danger">Deactivate</a>
-                        @else
-                        <a href="{{ route('active.course', $course->id) }}" class="btn btn-success">Activate</a>
-                        @endif
-                      </td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Libs JS -->
-  <script src="{{asset('assets/libs/list.js/dist/list.min.js?1692870487')}}" defer></script>
-  <!-- Tabler Core -->
-  <script src="{{asset('assets/js/tabler.min.js?1692870487')}}" defer></script>
-  <script src="{{asset('assets/js/demo.min.js?1692870487')}}" defer></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const list = new List('table-default', {
-        sortClass: 'table-sort',
-        listClass: 'table-tbody',
-        valueNames: ['sort-name', 'sort-type', 'sort-city', 'sort-score',
-          {
-            attr: 'data-date',
-            name: 'sort-date'
-          },
-          {
-            attr: 'data-progress',
-            name: 'sort-progress'
-          },
-          'sort-quantity'
-        ]
-      });
-    })
-  </script>
-</body>
+                        <h2 class="page-title">
+                            Courses
+                        </h2>
+                    </div>
+                    <!-- Page title actions -->
+                    <div class="col-auto ms-auto d-print-none">
+                        <div class="btn-list">
+                            <a href="{{ route('course.add') }}" class="btn btn-primary d-none d-sm-inline-block">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 5l0 14" />
+                                    <path d="M5 12l14 0" />
+                                </svg>
+                                Add New Course
+                            </a>
 
-</html>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page body -->
+        <div class="page-body">
+            <div class="container-xl">
+                <div class="row row-deck row-cards">
+                    <div class="col-12">
+                        <div class="card card-md">
+                            <div class="card-stamp card-stamp-lg">
+                                <div class="card-stamp-icon bg-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M9 11l3 3l8 -8" />
+                                <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
+                            </svg>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-10">
+                                        <h3 class="h1">Services</h3>
+                                        <div class="markdown text-muted">
+                                            Manage Courses from here.
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+
+                                <div class="table-responsive">
+                                    <table class="table card-table table-vcenter text-nowrap datatable">
+                                        <thead>
+                                            <tr>
+                                                <th class="w-1">Sl</th>
+                                                <th>Name</th>
+                                                <th>session</th>
+                                                <th>Duration </th>
+                                                <th>status </th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-tbody">
+                                            @foreach ($courses as $course)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td class="text-bold-500">{{ $course->name }}</td>
+                                                    <td>{{ $course->session }}</td>
+                                                    <td>{{ $course->duration }}</td>
+                                                    <td>
+                                                        @if ($course->status == 'active')
+                                                            <span class="badge bg-green-lt">{{ $course->status }}</span></td>
+                                                        @else
+                                                            <span class="badge bg-red-lt">{{ $course->status }}</span></td>
+                                                        @endif
+
+                                                    <td>
+                                                        <a href="{{ route('course.edit', $course->id) }} "
+                                                            class="btn btn-info d-none d-sm-inline-block">
+                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                class="icon icon-tabler icon-tabler-edit" width="24"
+                                                                height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                                stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                stroke-linejoin="round">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none">
+                                                                </path>
+                                                                <path
+                                                                    d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1">
+                                                                </path>
+                                                                <path
+                                                                    d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z">
+                                                                </path>
+                                                                <path d="M16 5l3 3"></path>
+                                                            </svg>
+                                                            Edit
+                                                        </a>
+                                                        @if ($course->status === 'active')
+                                                            <a href="{{ route('deactive.course', $course->id) }}"
+                                                                class="btn btn-outline-danger d-none d-sm-inline-block">
+                                                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg>
+                                                                Deactivate</a>
+                                                        @else
+                                                            <a href="{{ route('active.course', $course->id) }}"
+                                                                class="btn btn-outline-success d-none d-sm-inline-block">
+                                                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg>Activate</a>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+
+@push('css')
+@endpush
