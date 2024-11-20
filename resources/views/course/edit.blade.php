@@ -1,7 +1,5 @@
 @extends('layout.admin.app')
 
-@push('js')
-@endpush
 @push('css')
 @endpush
 
@@ -46,6 +44,7 @@
     </div>
 </div>
 
-
-
 @endsection
+
+@push('js')
+@endpush
