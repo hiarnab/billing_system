@@ -1,7 +1,5 @@
-@extends('layout.app')
+@extends('layout.admin.app')
 
-@push('js')
-@endpush
 @push('css')
 @endpush
 
@@ -38,7 +36,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer text-left">
+                <div class="text-left card-footer">
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </form>
@@ -46,6 +44,7 @@
     </div>
 </div>
 
-
-
 @endsection
+
+@push('js')
+@endpush
