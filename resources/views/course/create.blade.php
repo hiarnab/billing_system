@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.admin.app')
 
 @push('js')
 @endpush
@@ -6,6 +6,7 @@
 @endpush
 
 @section('content')
+<div class="page-wrapper">
 <div class="page-body">
     <div class="container-xl">
         <div class="col-md-6">
@@ -43,6 +44,7 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 
 <!-- <div class="col-12" style="margin-top:75px;">

@@ -6,6 +6,7 @@
 
 @section('content')
   <!-- Page body -->
+   <div class="page-wrapper">
   <div class="page-body">
           <div class="container-xl">
             <div class="row row-deck row-cards">
@@ -1346,4 +1347,5 @@
             </div>
           </div>
         </div>
+   </div>
 @endsection
