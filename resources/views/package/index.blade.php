@@ -82,14 +82,14 @@
                                             </tr>
                                         </thead>
                                         <tbody class="table-tbody">
-                                            @foreach ($packages as $packages->course)
+                                            @foreach ($packages as $package)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td class="text-bold-500">{{ $packages->name }}</td>
-                                                    <td>{{ $packages->course->name }}</td>
-                                                    <td>{{ $packages->base_price }}</td>
-                                                    <td>{{ $packages->discount_percentage}}</td>
-                                                    <td>{{ $packages->net_price}}</td>
+                                                    <td class="text-bold-500">{{ $package->name }}</td>
+                                                    <td>{{ $package->course->name }}</td>
+                                                    <td>{{ $package->base_price }}</td>
+                                                    <td>{{ $package->discount_percentage}}</td>
+                                                    <td>{{ $package->net_price}}</td>
                                                     <td>
                                                         <a href="{{route('package.edit', $package->id)}}"
                                                             class="btn btn-info d-none d-sm-inline-block">

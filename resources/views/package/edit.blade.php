@@ -25,7 +25,7 @@
                             <div class="form-group col-md-6">
                                 <label for="inputAddress">Course name</label>
                                 <input id="inputAddress" type="text" class="form-control" name="course_id"
-                                    placeholder="Enter session" value="{{$package_edit->course_id}}" required>
+                                    placeholder="Enter session" value="{{$package_edit->course->name}}" required>
                             </div>
                         </div>
                         <div class="form-row">

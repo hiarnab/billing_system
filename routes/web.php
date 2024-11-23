@@ -27,7 +27,7 @@ Route::get('/course/deactive/{id}',[CourseController::class, 'deactive'])->name(
 // course route
 
 // package route
-Route::get('/package/index',[PackageController::class,'index'])->name('package.index');
+Route::get('package/index',[PackageController::class,'index'])->name('package.index');
 Route::get('/package/create',[PackageController::class,'create'])->name('package.create');
 Route::post('/package/store',[PackageController::class, 'store'])->name('package.store');
 Route::get('/package/edit/{id}',[PackageController::class, 'edit'])->name('package.edit');
