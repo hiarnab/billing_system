@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('discount_percentage', 5, 2)->default(0); // Discount if any
             $table->decimal('net_price', 10, 2);
             $table->timestamps();
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('restrict');
         });
     }
 
