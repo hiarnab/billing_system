@@ -4,6 +4,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\BillableItemController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -34,6 +35,15 @@ Route::get('/package/edit/{id}',[PackageController::class, 'edit'])->name('packa
 Route::post('/package/update/{id}',[PackageController::class, 'update'])->name('package.update');
 Route::get('/package/delete/{id}',[PackageController::class, 'destroy'])->name('package.delete');
 // package route
+
+// billable_item
+Route::get('billable/index',[BillableItemController::class,'index'])->name('billable.index');
+Route::get('billable/create',[BillableItemController::class,'create'])->name('billable.create');
+Route::post('billable/store',[BillableItemController::class,'store'])->name('billable.store');
+Route::get('billable/edit/{id}',[BillableItemController::class, 'edit'])->name('billable.edit');
+Route::post('billable/update/{id}',[BillableItemController::class, 'update'])->name('billable.update');
+Route::get('/billable/delete/{id}',[BillableItemController::class, 'destroy'])->name('billable.delete');
+// billable_item
 
 });
 
