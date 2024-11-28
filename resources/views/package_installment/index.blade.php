@@ -3,6 +3,8 @@
 @push('js')
 @endpush
 
+
+
 @section('content')
     <div class="page-wrapper">
         <!-- Page header -->
@@ -15,13 +17,13 @@
                             Settings
                         </div>
                         <h2 class="page-title">
-                            Billable Item
+                            Package installment
                         </h2>
                     </div>
                     <!-- Page title actions -->
                     <div class="col-auto ms-auto d-print-none">
                         <div class="btn-list">
-                            <a href="{{ route('billable.create') }}" class="btn btn-primary d-none d-sm-inline-block">
+                            <a href="{{ route('installment.create') }}" class="btn btn-primary d-none d-sm-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -29,9 +31,8 @@
                                     <path d="M12 5l0 14" />
                                     <path d="M5 12l14 0" />
                                 </svg>
-                                Add New Billable Item
+                                Add New Package installment
                             </a>
-
                         </div>
                     </div>
                 </div>
@@ -59,34 +60,39 @@
                                     <div class="col-10">
                                         <h3 class="h1">Services</h3>
                                         <div class="markdown text-muted">
-                                            Manage Billable item from here.
+                                            Manage Package installment from here.
                                         </div>
                                     </div>
                                 </div>
                                 <br>
                                 <br>
+
                                 <div class="table-responsive">
                                     <table class="table card-table table-vcenter text-nowrap datatable">
                                         <thead>
                                             <tr>
                                                 <th class="w-1">Sl</th>
-                                                <th>Name</th>
                                                 <th>Package Name</th>
                                                 <th>Amount</th>
-                                                <th>Gst</th>
+                                                <th>Due Date</th>
+                                                <th>Paymnet Date </th>
+                                                <th>Fine</th>
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody class="table-tbody">
-                                            @foreach ($billable_items as $billable_item)
+                                            @foreach ($package_installment as $pkg_install)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td class="text-bold-500">{{ $billable_item->item_name }}</td>
-                                                    <td>{{ $billable_item->package->name }}</td>
-                                                    <td>{{ $billable_item->amount }}</td>
-                                                    <td>{{ $billable_item->gst}}</td>
+                                                    <td>{{ $pkg_install->package->name }}</td>
+                                                    <td class="text-bold-500">{{ $pkg_install->amount }}</td>
+                                                    <td>{{ $pkg_install->due_date }}</td>
+                                                    <td>{{ $pkg_install->payment_date}}</td>
+                                                    <td>{{ $pkg_install->fine}}</td>
+                                                    <td>{{$pkg_install->status}}</td>
                                                     <td>
-                                                        <a href="{{route ('billable.edit', $billable_item->id)}}"
+                                                        <a href="{{route ('installment.edit', $pkg_install->id)}}"
                                                             class="btn btn-info d-none d-sm-inline-block">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                 class="icon icon-tabler icon-tabler-edit" width="24"
@@ -107,7 +113,7 @@
                                                         </a>
                                                     </td>
                                                     <td>
-                                                        <a href="{{route ('billable.delete', $billable_item->id)}}"
+                                                        <a href="{{route ('installment.delete', $pkg_install->id)}}"
                                                             class="btn btn-info d-none d-sm-inline-block">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                 class="icon icon-tabler icon-tabler-edit" width="24"

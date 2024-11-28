@@ -5,6 +5,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\BillableItemController;
+use App\Http\Controllers\PackageInstallmentController;
+use App\Models\PackageInstallment;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -44,6 +46,15 @@ Route::get('billable/edit/{id}',[BillableItemController::class, 'edit'])->name('
 Route::post('billable/update/{id}',[BillableItemController::class, 'update'])->name('billable.update');
 Route::get('/billable/delete/{id}',[BillableItemController::class, 'destroy'])->name('billable.delete');
 // billable_item
+
+// package_installment
+Route::get('package-installment/index',[PackageInstallmentController::class, 'index'])->name('installment.index');
+Route::get('package-installment/create',[PackageInstallmentController::class, 'create'])->name('installment.create');
+Route::post('package-installment/store',[PackageInstallmentController::class, 'store'])->name('installment.store');
+Route::get('package-installment/edit/{id}',[PackageInstallmentController::class, 'edit'])->name('installment.edit');
+Route::post('package-installment/update/{id}',[PackageInstallmentController::class, 'update'])->name('installment.update');
+Route::get('package-installment/delete/{id}',[PackageInstallmentController::class, 'destroy'])->name('installment.delete');
+// package_installment
 
 });
 
