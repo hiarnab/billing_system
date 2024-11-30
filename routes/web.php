@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\BillableItemController;
 use App\Http\Controllers\PackageInstallmentController;
+use App\Http\Controllers\StudentController;
 use App\Models\PackageInstallment;
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +59,16 @@ Route::get('package-installment/delete/{id}',[PackageInstallmentController::clas
 
 });
 
+Route::middleware(['student'])->group(function () {
+    Route::get('/student/dashboard', [StudentController::class, 'dashboard']);
+    
+});
+Route::get('/student/list',[StudentController::class, 'index'])->name('student.list');
+Route::get('/student/create',[StudentController::class, 'create'])->name('student.create');
+Route::post('/student/store',[StudentController::class, 'store'])->name('student.store');
+Route::get('/student/edit/{id}',[StudentController::class, 'edit'])->name('student.edit');
+Route::post('/student/update/{id}',[StudentController::class, 'update'])->name('student.update');
+Route::get('/student/destroy',[StudentController::class, 'destroy'])->name('student.delete');
 // login route
 Route::get('/login-view',[LoginController::class,'login_view'])->name('login.view');
 Route::post('/loggin',[LoginController::class,'loggedin'])->name('login');
