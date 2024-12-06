@@ -22,7 +22,7 @@ class StudentController extends Controller
 
     public function dashboard()
     {
-        $student = Auth::guard('admin')->user();
+        $student = Auth::guard('student_guard')->user();
         return view('student.dashboard', compact('student'));
     }
 
@@ -39,7 +39,7 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
-        $entity = new Student();
+        $entity = new Student(); 
         $entity->address = $request->address;
         $entity->father_name = $request->father_name;
         $entity->father_mobile = $request->father_mobile;
