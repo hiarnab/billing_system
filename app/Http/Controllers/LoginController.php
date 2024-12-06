@@ -21,10 +21,24 @@ class LoginController extends Controller
 
         $credential = $request->only('email', 'password');
 
-        if(Auth::attempt($credential)){
-            return redirect()->route('dashboard');
+
+        $admin = \App\Models\User::where('email', $request->email)->get();
+        if( sizeof($admin) > 0)
+        {
+            // return "ok";
+            if(Auth::attempt($credential)){
+                return redirect()->route('dashboard');
+            }
+            return redirect()->back();
+        }else{
+            // $credentials = $request->only('email', 'password');
+            // return "ok";
+            if (Auth::guard('student_guard')->attempt($credential)) {
+                return redirect()->intended('/student/dashboard');
+            }
+            return back()->withErrors(['email' => 'Invalid credentials']);
         }
-        return redirect()->back();
+
     }
 
     public function logout()

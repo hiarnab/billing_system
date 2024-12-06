@@ -16,7 +16,6 @@ class StudentController extends Controller
         if (Auth::guard('student_guard')->attempt($credentials)) {
             return redirect()->intended('/student/dashboard');
         }
-
         return back()->withErrors(['email' => 'Invalid credentials']);
     }
 
@@ -43,7 +42,7 @@ class StudentController extends Controller
         $entity->address = $request->address;
         $entity->father_name = $request->father_name;
         $entity->father_mobile = $request->father_mobile;
-        $entity->mobile_no = $request->mobile_no;
+        $entity->mobile_no = $request->mobile_no;  
         $entity->scholar_no	= $request->scholar_no;
         $entity->email = $request->email;
         $entity->password = Hash::make($request->password);

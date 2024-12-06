@@ -1,3 +1,11 @@
+@extends('layout.student.app')
+
+@push('css')
+@endpush
+
+@section('content')
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,3 +17,5 @@
     <h1>Student dashboard</h1>
 </body>
 </html>
+
+@endsection

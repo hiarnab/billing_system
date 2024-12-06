@@ -58,7 +58,7 @@ Route::get('package-installment/delete/{id}',[PackageInstallmentController::clas
 // package_installment
 
 });
-
+// Student route
 Route::middleware(['student'])->group(function () {
     Route::get('/student/dashboard', [StudentController::class, 'dashboard']);
     
@@ -69,8 +69,13 @@ Route::post('/student/store',[StudentController::class, 'store'])->name('student
 Route::get('/student/edit/{id}',[StudentController::class, 'edit'])->name('student.edit');
 Route::post('/student/update/{id}',[StudentController::class, 'update'])->name('student.update');
 Route::get('/student/destroy',[StudentController::class, 'destroy'])->name('student.delete');
+
+// student route
+
 // login route
 Route::get('/login-view',[LoginController::class,'login_view'])->name('login.view');
-Route::post('/loggin',[LoginController::class,'loggedin'])->name('login');
+Route::post('/loggin',[LoginController::class,'loggedin'])->name('login.submit');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 // login route
+
+
