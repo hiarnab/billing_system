@@ -16,33 +16,43 @@
                         <h3 class="card-title">Add Package</h3>
                         <div class="row row-cards">
 
-                            <div class="form-row col-md-6">
+                            <div class="form-row ">
                                 <div class="form-group col-md-6">Select Course</div>
-                                <select class="form-select" name="course_id">
+                                <select class="form-select col-md-6" name="course_id">
                                     @foreach($courses as $course)
                                     <option value="{{ $course->id }}">{{ $course->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
 
+                            <div class="form-row">
+                                <div class="form-group col-md-6">Select Billable Item</div>
+                                <select class="form-select col-md-6" name="billable_id">
+                                    @foreach($billable_item as $item)
+                                    <option value="{{ $item->id }}">{{ $item->id }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group">
                                     <label for="name">Name</label>
                                     <input id="" type="text" class="form-control" name="name"
                                         placeholder="Enter Name" value="" required>
                                 </div>
                             </div>
 
+                            
+
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group">
                                     <label for="price">Price</label>
                                     <input id="#" type="number" class="form-control" name="price"
                                         placeholder="Enter price" value="" required>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group">
                                     <label for="net_price">Net Price</label>
                                     <input id="#" type="number" class="form-control" name="net_price"
                                         placeholder="Enter Duration" value="" required>

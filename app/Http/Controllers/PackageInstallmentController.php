@@ -23,14 +23,32 @@ class PackageInstallmentController extends Controller
     public function store(Request $request)
     {
         // return $request->all();
-        $entity = new PackageInstallment();
-        $entity->package_id = $request->package_id;
-        $entity->amount = $request->amount;
-        $entity->due_date = $request->due_date;
-        $entity->payment_date = $request->payment_date;
-        $entity->fine = $request->fine;
-        $entity->save();
-        return redirect()->back()->with('success', 'Packageinstallment added successfully');
+
+        $data = [];
+        foreach ($request->amount as $index => $amount) {
+            $data[] = [
+                'package_id' => $request->package_id,
+                'amount' => $amount,
+                'due_date' => $request->due_date[$index],
+                'payment_date' => $request->payment_date[$index] ?? null,
+                'fine' => $request->fine[$index] ?? 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+    
+        PackageInstallment::insert($data);
+    
+        return redirect()->back()->with('success', 'Package installments added successfully.');
+    
+        // $entity = new PackageInstallment();
+        // $entity->package_id = $request->package_id;
+        // $entity->amount = is_array($request->amount) ? $request->amount[0] : $request->amount;
+        // $entity->due_date = is_array($request->due_date) ? $request->due_date[0] : $request->due_date;
+        // $entity->payment_date = is_array($request->payment_date) ? $request->payment_date[0] : $request->payment_date;
+        // $entity->fine = is_array($request->fine) ? $request->fine[0] : $request->fine;
+        // $entity->save();
+        // return redirect()->back()->with('success', 'Packageinstallment added successfully');
     }
 
     public function edit($id)
