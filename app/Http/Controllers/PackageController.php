@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BillableItem;
 use Illuminate\Http\Request;
 use App\Models\Package;
 use App\Models\Course;
@@ -17,7 +18,8 @@ class PackageController extends Controller
     public function create()
     {
         $courses = Course::all();
-        return view('package.create', compact('courses'));
+        $billable_item = BillableItem::all();
+        return view('package.create', compact('courses', 'billable_item'));
     }
 
     public function store(Request $request)
@@ -33,6 +35,7 @@ class PackageController extends Controller
         $entity = new Package();
         $entity->name = $request->name;
         $entity->course_id  = $request->course_id;
+        $entity->billable_item_id = $request->billable_id;
         $entity->base_price = $request->price;
         $entity->discount_percentage = "80";
         $entity->net_price = $request->net_price;

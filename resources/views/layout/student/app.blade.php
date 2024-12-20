@@ -13,7 +13,6 @@
     <link href="{{ asset('assets/css/tabler-payments.min.css?1692870487') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/tabler-vendors.min.css?1692870487') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/demo.min.css?1692870487') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://rsms.me/inter/inter.css');
 
@@ -31,9 +30,9 @@
 <body>
     <script src="{{ asset('admin/js/demo-theme.min.js?1684106062') }}"></script>
     <div class="page">
-        @include('layout.admin.partials.sidebar')
+        @include('layout.student.partials.sidebar')
         @yield('content')
-        @include('layout.admin.partials.footer')
+        @include('layout.student.partials.footer')
     </div>
     <!-- Libs JS -->
 
