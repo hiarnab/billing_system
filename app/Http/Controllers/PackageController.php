@@ -31,7 +31,7 @@ class PackageController extends Controller
                 'course_id' => $request->course_id,
                 'name' => $request->name[$index],
                 'base_price' => $request->price[$index],
-                'discount_percentage' => "80",
+                'discount_percentage' => '80',
                 'net_price' => $net_price,
                 'billable_item_id' => isset($request->billable_id[$index]) ? $request->billable_id[$index] : null,
                 'created_at' => now(),
