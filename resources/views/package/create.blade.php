@@ -29,11 +29,7 @@
                                 <div class="form-group col-md-6">Select Billable Item</div>
                                 <select class="form-select col-md-6" name="billable_id[]">
                                     @foreach($billable_item as $item)
-                                    @if($item->billable)
-                                    <option value="{{ $item->id }}">{{ $item->billable->item_name }}</option>
-                                    @else
-                                    <option value="{{ $item->id }}">No Billable Item</option>
-                                    @endif
+                                    <option value="{{ $item->id }}">{{ $item->item_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -59,6 +55,14 @@
                                 <div class="form-group">
                                     <label for="net_price">Net Price</label>
                                     <input id="#" type="number" class="form-control" name="net_price[]"
+                                        placeholder="Enter Duration" value="" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="net_price">Discount</label>
+                                    <input id="#" type="number" class="form-control" name="discount[]"
                                         placeholder="Enter Duration" value="" required>
                                 </div>
                             </div>
@@ -106,10 +110,10 @@
                     billableitemfieldcontainer.innerHTML = `
               <div class="form-group col">
                      <label for="name">Billable</label>
-                 <select class="form-control" name="billable[]" required>
+                 <select class="form-control" name="billable_id[]" required>
                     <option value="" disabled selected>Select Billable item</option>
                     @foreach ($billable_item as $item)
-                    <option value="{{$item->id}}">{{$item->billable->item_name}}</option>
+                    <option value="{{$item->id}}">{{$item->item_name}}</option>
                     @endforeach
                  </select>
               </div>`;
@@ -142,10 +146,21 @@
                 </div>
                 `;
 
+
+                const discountfieldcontainer = document.createElement('div');
+                    discountfieldcontainer.className = 'form-row';
+                    discountfieldcontainer.innerHTML = `
+                <div class="form-group col">
+                    <label for="discount">Discount</label>
+                    <input type="number" class="form-control name="discount[]" placeholder="Enter discount" required>
+                </div>
+                `;
+
                     newInputContainer.appendChild(billableitemfieldcontainer);
                     newInputContainer.appendChild(namefieldcontainer);
                     newInputContainer.appendChild(pricefieldcontainer);
                     newInputContainer.appendChild(netpricefieldcontainer);
+                    newInputContainer.appendChild(discountfieldcontainer);
 
                     const removeIcon = document.createElement('i');
                     removeIcon.className = 'fa fa-minus-square icon remove';
@@ -177,9 +192,5 @@
         }
     });
 </script>
-
-
-
-
 
 @endpush

@@ -52,6 +52,7 @@ Route::get('/billable/delete/{id}',[BillableItemController::class, 'destroy'])->
 Route::get('package-installment/index',[PackageInstallmentController::class, 'index'])->name('installment.index');
 Route::get('package-installment/create',[PackageInstallmentController::class, 'create'])->name('installment.create');
 Route::post('package-installment/store',[PackageInstallmentController::class, 'store'])->name('installment.store');
+Route::get('package-installment/view/{package_id}',[PackageInstallmentController::class, 'view'])->name('installment.view');
 Route::get('package-installment/edit/{id}',[PackageInstallmentController::class, 'edit'])->name('installment.edit');
 Route::post('package-installment/update/{id}',[PackageInstallmentController::class, 'update'])->name('installment.update');
 Route::get('package-installment/delete/{id}',[PackageInstallmentController::class, 'destroy'])->name('installment.delete');

@@ -18,8 +18,8 @@ class PackageController extends Controller
     public function create()
     {
         $courses = Course::all();
-        $billable_item = Package::with('billable')->get();
-        // $billable_item = BillableItem::all();
+        // $billable_item = Package::with('billable')->get();
+        $billable_item = BillableItem::all();
         return view('package.create', compact('courses', 'billable_item'));
     }
 
@@ -31,9 +31,10 @@ class PackageController extends Controller
                 'course_id' => $request->course_id,
                 'name' => $request->name[$index],
                 'base_price' => $request->price[$index],
-                'discount_percentage' => '80',
+                'discount_percentage' => $request->discount[$index],
                 'net_price' => $net_price,
-                'billable_item_id' => isset($request->billable_id[$index]) ? $request->billable_id[$index] : null,
+                'billable_item_id' => $request->billable_id[$index],
+                // 'billable_item_id' => isset($request->billable_id[$index]) ? $request->billable_id[$index] : null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

@@ -21,7 +21,7 @@
                                     <input type="hidden" name="id" value="">
                                 </div>
                             </div>
-                            <div class="form-row">
+                          {{--  <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="package_id">Package</label>
                                     <select id="package_id" class="form-control" name="package_id" required>
@@ -33,7 +33,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
