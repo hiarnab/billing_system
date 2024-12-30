@@ -30,7 +30,7 @@ class BillableItemController extends Controller
         // ]);
 
         $entity = new BillableItem();
-        $entity->package_id = $requeest->package_id;
+        // $entity->package_id = $requeest->package_id;
         $entity->item_name = $requeest->item_name;
         $entity->amount = $requeest->amount;
         $entity->gst = $requeest->gst;
@@ -48,7 +48,7 @@ class BillableItemController extends Controller
     public function update(Request $request,$id)
     {
         $billable_update = BillableItem::where('id', $id)->first();
-        $billable_update->package_id = $request->package_id;
+        // $billable_update->package_id = $request->package_id;
         $billable_update->item_name = $request->item_name;
         $billable_update->amount = $request->amount;
         $billable_update->gst = $request->gst;

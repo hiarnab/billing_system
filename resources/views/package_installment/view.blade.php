@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="page-wrapper">
-    <!-- page header -->
+<!-- page header -->
 <div class="page-header d-print-none">
             <div class="container-xl">
                 <div class="row g-2 align-items-center">
@@ -36,60 +36,62 @@
                 </div>
             </div>
         </div>
+    <!-- page body -->
     <div class="page-body">
         <div class="container-xl">
             <div class="col">
-                <form class="card" action="{{route ('installment.update', $package_installment_edit->id)}}" method="post">
+                <form class="card" action="#" method="post">
                     @csrf
                     <div class="card-body">
-                        <h3 class="card-title">Edit Package Installment</h3>
+                        <h3 class="card-title">View Package Installment</h3>
                         <div class="row row-cards">
                             <div class="form-row col-md-3">
                                 <div class="form-group">
                                     <label for="package_id">Package name</label>
                                     <select id="package_id" class="form-control" name="package_id" required>
-                                        @foreach($packages as $package)
-                                        <option value="{{ $package->id }}"
-                                            @if($package_installment_edit->package_id == $package->id) selected @endif>
+                                        @foreach($packages as $package)  
+                                        <option value="{{ $package->id }}">
                                             {{ $package->name }}
                                         </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
+                            @foreach($package_installment as $package)
                             <div class="form-row col-md-3">
                                 <div class="form-group">
                                     <label for="inputAddress">Amount</label>
                                     <input id="inputAddress" type="number" class="form-control" name="amount"
-                                        placeholder="Enter Amount" value="{{$package_installment_edit->amount}}" required>
+                                        placeholder="Enter Amount" value="{{$package->amount}}" required>
                                 </div>
                             </div>
-
+                            
                             <div class="form-row col-md-3">
                                 <div class="form-group">
                                     <label for="inputAddress">Due date</label>
-                                    <input id="inputAddress" type="text" class="form-control" name="due_date"
-                                        placeholder="Enter Duration" value="{{ \Carbon\Carbon::parse($package_installment_edit->due_date)->format('Y-m-d') }}" required>
+                                    <input id="inputAddress" type="date" class="form-control" name="due_date"
+                                        placeholder="Enter Duration" value="{{ \Carbon\Carbon::parse($package->due_date)->format('Y-m-d') }}" required>
                                 </div>
                             </div>
                             <div class="form-row col-md-3">
                                 <div class="form-group">
                                     <label for="inputAddress">Payment Date</label>
-                                    <input id="inputAddress" type="text" class="form-control" name="payment_date"
-                                        placeholder="Enter session" value="{{ \Carbon\Carbon::parse($package_installment_edit->payment_date)->format('Y-m-d') }}" required>
+                                    <input id="inputAddress" type="date" class="form-control" name="payment_date"
+                                        placeholder="Enter session" value="{{ \Carbon\Carbon::parse($package->payment_date)->format('Y-m-d') }}" required>
                                 </div>
                             </div>
                             <div class="form-row col-md-3">
                                 <div class="form-group">
                                     <label for="inputAddress">Fine</label>
                                     <input id="inputAddress" type="number" class="form-control" name="fine"
-                                        placeholder="Enter session" value="{{$package_installment_edit->fine}}" required>
+                                        placeholder="Enter session" value="{{$package->fine}}" required>
                                 </div>
                             </div>
+                            <div>
+                                <a href="{{route ('installment.edit', $package->package_id)}}" class="btn btn-primary">Edit</a>
+                            </div>
+                            @endforeach
                         </div>
-                    </div>
-                    <div class="text-left card-footer">
-                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>

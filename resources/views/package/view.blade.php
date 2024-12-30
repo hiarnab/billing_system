@@ -5,47 +5,96 @@
 
 @section('content')
 <div class="page-wrapper">
-<div class="page-body">
-    <div class="container-xl">
-        <div class="col-md-6">
-            <form class="card" action="#" method="post">
-                <div class="card-body">
-                    <h3 class="card-title">View Package</h3>
-                    <div class="row row-cards">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputAddress">Name</label>
-                                <input id="inputAddress" type="text" class="form-control" name="name"
-                                    placeholder="Enter Name" value="{{$package_view->name}}" required>
-                                <input type="hidden" name="id" value="">
-                            </div>
+    <!-- page header -->
+<div class="page-header d-print-none">
+            <div class="container-xl">
+                <div class="row g-2 align-items-center">
+                    <div class="col">
+                        <!-- Page pre-title -->
+                        <div class="page-pretitle">
+                            Settings
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputAddress">Course name</label>
-                                <input id="inputAddress" type="text" class="form-control" name="course_id"
-                                    placeholder="Enter session" value="{{$package_view->course_id}}" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputAddress">Price</label>
-                                <input id="inputAddress" type="text" class="form-control" name="price"
-                                    placeholder="Enter Duration" value="{{$package_view->base_price}}" required>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputAddress">Net Price</label>
-                                <input id="inputAddress" type="number" class="form-control" name="net_price"
-                                    placeholder="Enter Duration" value="{{$package_view->net_price}}" required>
-                            </div>
+                        <h2 class="page-title">
+                            Package
+                        </h2>
+                    </div>
+                    <!-- Page title actions -->
+                    <div class="col-auto ms-auto d-print-none">
+                        <div class="btn-list">
+                            <a href="{{route ('package.index')}}" class="btn btn-primary d-none d-sm-inline-block">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="" />
+                                    <path d="" />
+                                </svg>
+                                Back
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="text-left card-footer">
-                    <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+<div class="page-body">
+    <div class="container-xl">
+        <div class="col">
+            <form class="card" action="#" method="post">
+                @csrf
+                <div class="card-body">
+                    <h3 class="card-title">view Package</h3>
+                    <div class="row row-cards">
+                    @foreach($package_view as $view)
+                        <div class="form-row col-md-3">
+                            <div class="form-group">
+                                <label for="inputAddress">Name</label>
+                                <input id="inputAddress" type="text" class="form-control" name="name"
+                                    placeholder="Enter Name" value="{{$view->name}}" required>
+                                    <input type="hidden" name="id" value="{{$view->id}}">
+                            </div>
+                        </div>
+                        <div class="form-row col-md-3">
+                            <div class="form-group">
+                                <label for="inputAddress">Course name</label>
+                                <input id="inputAddress" type="text" class="form-control" name="course_id"
+                                    placeholder="Enter session" value="{{$view->course->name}}" required>
+                            </div>
+                        </div>
+                       
+                        <div class="form-row col-md-3">
+                            <div class="form-group">
+                                <label for="inputAddress">Price</label>
+                                <input id="inputAddress" type="text" class="form-control" name="price"
+                                    placeholder="Enter Duration" value="{{$view->base_price}}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row col-md-3">
+                            <div class="form-group">
+                                <label for="inputAddress">Net Price</label>
+                                <input id="inputAddress" type="number" class="form-control" name="net_price"
+                                    placeholder="Enter Duration" value="{{$view->net_price}}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row col-md-3">
+                                <div class="form-group">
+                                    <label for="package_id">Billable Item</label>
+                                    <select id="package_id" class="form-control" name="billable_item_id" required>
+                                        @foreach($billable_item as $item)  
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->item_name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                        <div>
+                                <a href="{{route ('package.edit', $view->id)}}" class="btn btn-primary">Edit</a>
+                         </div>
+                        @endforeach
+                    </div>
                 </div>
             </form>
         </div>

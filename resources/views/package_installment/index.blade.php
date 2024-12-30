@@ -92,7 +92,7 @@
                                                     <td>{{ $pkg_install->fine}}</td>
                                                     <td>{{$pkg_install->status}}</td>
                                                     <td>
-                                                        <a href="{{route ('installment.edit', $pkg_install->id)}}"
+                                                        <a href="{{route ('installment.view', $pkg_install->package_id)}}"
                                                             class="btn btn-info d-none d-sm-inline-block">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                 class="icon icon-tabler icon-tabler-edit" width="24"
@@ -109,7 +109,7 @@
                                                                 </path>
                                                                 <path d="M16 5l3 3"></path>
                                                             </svg>
-                                                            Edit
+                                                            view
                                                         </a>
                                                     </td>
                                                     <td>

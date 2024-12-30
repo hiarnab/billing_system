@@ -34,6 +34,7 @@ Route::get('/course/deactive/{id}',[CourseController::class, 'deactive'])->name(
 Route::get('package/index',[PackageController::class,'index'])->name('package.index');
 Route::get('/package/create',[PackageController::class,'create'])->name('package.create');
 Route::post('/package/store',[PackageController::class, 'store'])->name('package.store');
+Route::get('/package/view/{id}',[PackageController::class, 'view'])->name('package.view');
 Route::get('/package/edit/{id}',[PackageController::class, 'edit'])->name('package.edit');
 Route::post('/package/update/{id}',[PackageController::class, 'update'])->name('package.update');
 Route::get('/package/delete/{id}',[PackageController::class, 'destroy'])->name('package.delete');
@@ -52,6 +53,7 @@ Route::get('/billable/delete/{id}',[BillableItemController::class, 'destroy'])->
 Route::get('package-installment/index',[PackageInstallmentController::class, 'index'])->name('installment.index');
 Route::get('package-installment/create',[PackageInstallmentController::class, 'create'])->name('installment.create');
 Route::post('package-installment/store',[PackageInstallmentController::class, 'store'])->name('installment.store');
+Route::get('package-installment/view/{package_id}',[PackageInstallmentController::class, 'view'])->name('installment.view');
 Route::get('package-installment/edit/{id}',[PackageInstallmentController::class, 'edit'])->name('installment.edit');
 Route::post('package-installment/update/{id}',[PackageInstallmentController::class, 'update'])->name('installment.update');
 Route::get('package-installment/delete/{id}',[PackageInstallmentController::class, 'destroy'])->name('installment.delete');

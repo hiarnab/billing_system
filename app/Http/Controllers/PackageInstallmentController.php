@@ -36,11 +36,11 @@ class PackageInstallmentController extends Controller
                 'updated_at' => now(),
             ];
         }
-    
+        // return $data;
         PackageInstallment::insert($data);
-    
+
         return redirect()->back()->with('success', 'Package installments added successfully.');
-    
+
         // $entity = new PackageInstallment();
         // $entity->package_id = $request->package_id;
         // $entity->amount = is_array($request->amount) ? $request->amount[0] : $request->amount;
@@ -51,9 +51,21 @@ class PackageInstallmentController extends Controller
         // return redirect()->back()->with('success', 'Packageinstallment added successfully');
     }
 
+    public function view($package_id)
+    {
+         $package_installment = PackageInstallment::where('package_id', $package_id)->get();
+        $packages = Package::all();
+        return view('package_installment.view', compact('package_installment', 'packages'));
+    }
+
+
     public function edit($id)
     {
-        $package_installment_edit = PackageInstallment::where('id', $id)->first();
+        // return $id;
+        $package_installment_edit = PackageInstallment::where('package_id', $id)->first();
+        // $view = PackageInstallment::where('id', $id)->first();
+        // $package = Package::where('id', $view->package_id)->first();
+        // $package_installment = PackageInstallment::where('package_id', $package->id)->first();
         $packages = Package::all();
         return view('package_installment.edit', compact('package_installment_edit', 'packages'));
     }
@@ -61,7 +73,7 @@ class PackageInstallmentController extends Controller
     public function update(Request $request, $id)
     {
         // $packageInstallment = PackageInstallment::find($id);
-        
+
         // $packageInstallment->update([
         //     'package_id' => $request->package_id,
         //     'amount' => $request->amount,

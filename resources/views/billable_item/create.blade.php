@@ -22,14 +22,16 @@
                                         placeholder="Enter name" value="" required>
                                 </div>
                             </div>
-                            <div class="form-row col-md-6">
+
+                          {{--  <div class="form-row col-md-6">
                                 <div class="form-group col-md-6">Select Package</div>
                                 <select class="form-select" name="package_id">
                                     @foreach($packages as $package)
                                     <option value="{{ $package->id }}">{{ $package->name }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
+
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputAddress">Amount</label>
