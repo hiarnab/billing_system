@@ -34,6 +34,7 @@ Route::get('/course/deactive/{id}',[CourseController::class, 'deactive'])->name(
 Route::get('package/index',[PackageController::class,'index'])->name('package.index');
 Route::get('/package/create',[PackageController::class,'create'])->name('package.create');
 Route::post('/package/store',[PackageController::class, 'store'])->name('package.store');
+Route::get('/package/view/{id}',[PackageController::class, 'view'])->name('package.view');
 Route::get('/package/edit/{id}',[PackageController::class, 'edit'])->name('package.edit');
 Route::post('/package/update/{id}',[PackageController::class, 'update'])->name('package.update');
 Route::get('/package/delete/{id}',[PackageController::class, 'destroy'])->name('package.delete');

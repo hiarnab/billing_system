@@ -36,7 +36,7 @@ class PackageInstallmentController extends Controller
                 'updated_at' => now(),
             ];
         }
-
+        // return $data;
         PackageInstallment::insert($data);
 
         return redirect()->back()->with('success', 'Package installments added successfully.');

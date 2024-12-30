@@ -30,15 +30,16 @@ class PackageController extends Controller
             $data [] = [
                 'course_id' => $request->course_id,
                 'name' => $request->name[$index],
-                'base_price' => $request->price[$index],
-                'discount_percentage' => $request->discount[$index],
+                'base_price' => $request->base_price[$index],
+                'discount_percentage' => $request->discount_percentage[$index],
                 'net_price' => $net_price,
-                'billable_item_id' => $request->billable_id[$index],
+                'billable_item_id' => $request->billable_item_id[$index],
                 // 'billable_item_id' => isset($request->billable_id[$index]) ? $request->billable_id[$index] : null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
         }
+        // return $data;
         Package::insert($data);
         return redirect()->back()->with('success', 'Package added successfully');
 
@@ -64,7 +65,8 @@ class PackageController extends Controller
     public function edit($id)
     {
         $package_edit = Package::where('id', $id)->first();
-        return view('package.edit',compact('package_edit'));
+        $billable_item = BillableItem::all();
+        return view('package.edit',compact('package_edit', 'billable_item'));
     }
 
     public function update(Request $request,$id)
@@ -74,6 +76,7 @@ class PackageController extends Controller
         $package_update->course_id = $request->course_id;
         $package_update->base_price = $request->price;
         $package_update->net_price = $request->net_price;
+        $package_update->billable_item_id = $request->billable_item_id;
         $package_update->save();
         return redirect()->back()->with('success', 'Package updated successfully');
     }
@@ -85,9 +88,11 @@ class PackageController extends Controller
         return redirect()->back()->with('success', 'Package deleted successfully');
     }
 
-    public function view($id)
+    public function view($course_id)
     {
-        $package_view = Package::where('id', $id)->first();
-        return view('package.view',compact('package_view'));
+        // return $course_id;
+        $package_view = Package::where('course_id', $course_id)->get();
+        $billable_item = BillableItem::all();
+        return view('package.view',compact('package_view', 'billable_item'));
     }
 }
