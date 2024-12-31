@@ -80,13 +80,13 @@
                                         placeholder="Enter session" value="{{ \Carbon\Carbon::parse($package->payment_date)->format('Y-m-d') }}" required>
                                 </div>
                             </div>
-                            <div class="form-row col-md-3">
+                    {{--        <div class="form-row col-md-3">
                                 <div class="form-group">
                                     <label for="inputAddress">Fine</label>
                                     <input id="inputAddress" type="number" class="form-control" name="fine"
                                         placeholder="Enter session" value="{{$package->fine}}" required>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div>
                                 <a href="{{route ('installment.edit', $package->package_id)}}" class="btn btn-primary">Edit</a>
                             </div>

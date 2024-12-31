@@ -11,6 +11,7 @@ class PackageInstallmentController extends Controller
     public function index()
     {
         $package_installment = PackageInstallment::all();
+        // $package_installment = PackageInstallment::select('package_id')->distinct()->get();
         return view('package_installment.index', compact('package_installment'));
     }
 
