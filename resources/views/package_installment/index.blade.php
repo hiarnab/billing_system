@@ -89,7 +89,11 @@
                                                     <td class="text-bold-500">{{ $pkg_install->amount }}</td>
                                                     <td>{{ $pkg_install->due_date }}</td>
                                                     <td>{{ $pkg_install->payment_date}}</td>
+                                                    @if ($pkg_install->fine > 0 )
                                                     <td>{{ $pkg_install->fine}}</td>
+                                                    @else
+                                                    <td>0.00</td>
+                                                    @endif
                                                     <td>{{$pkg_install->status}}</td>
                                                     <td>
                                                         <a href="{{route ('installment.view', $pkg_install->package_id)}}"
