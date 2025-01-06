@@ -49,7 +49,7 @@
                             <div class="form-group">
                                 <label for="inputAddress">Name</label>
                                 <input id="inputAddress" type="text" class="form-control" name="name"
-                                    placeholder="Enter Name" value="{{$view->name}}" required>
+                                    placeholder="Enter Name" value="{{$view->name}}" required readonly>
                                     <input type="hidden" name="id" value="{{$view->id}}">
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                             <div class="form-group">
                                 <label for="inputAddress">Course name</label>
                                 <input id="inputAddress" type="text" class="form-control" name="course_id"
-                                    placeholder="Enter session" value="{{$view->course->name}}" required>
+                                    placeholder="Enter session" value="{{$view->course->name}}" required readonly>
                             </div>
                         </div>
                        
@@ -65,7 +65,7 @@
                             <div class="form-group">
                                 <label for="inputAddress">Price</label>
                                 <input id="inputAddress" type="text" class="form-control" name="price"
-                                    placeholder="Enter Duration" value="{{$view->base_price}}" required>
+                                    placeholder="Enter Duration" value="{{$view->base_price}}" required readonly>
                             </div>
                         </div>
 
@@ -73,22 +73,31 @@
                             <div class="form-group">
                                 <label for="inputAddress">Net Price</label>
                                 <input id="inputAddress" type="number" class="form-control" name="net_price"
-                                    placeholder="Enter Duration" value="{{$view->net_price}}" required>
+                                    placeholder="Enter Duration" value="{{$view->net_price}}" required readonly>
                             </div>
                         </div>
 
                         <div class="form-row col-md-3">
+                            <div class="form-group">
+                                <label for="inputAddress">Billable Item</label>
+                                <input id="inputAddress" type="text" class="form-control" name="billable_item_id"
+                                    placeholder="Enter Duration" value="{{$view->billable->item_name}}" required readonly>
+                            </div>
+                        </div>
+
+                      {{--  <div class="form-row col-md-3">
                                 <div class="form-group">
                                     <label for="package_id">Billable Item</label>
-                                    <select id="package_id" class="form-control" name="billable_item_id" required>
-                                        @foreach($billable_item as $item)  
-                                        <option value="{{ $item->id }}">
-                                            {{ $item->item_name }}
+                                    <select id="package_id" class="form-control" name="billable_item_id" required >
+                                        @foreach($package_view as $item)  
+                                        <option value="{{ $item->billable_item_id }}"
+                                        @if($item->billable_item_id == $selected_item_id) selected @endif>
+                                            {{ $item->billable->item_name }}
                                         </option>
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         <div>
                                 <a href="{{route ('package.edit', $view->id)}}" class="btn btn-primary">Edit</a>

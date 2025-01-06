@@ -39,7 +39,7 @@
 <div class="page-body">
     <div class="container-xl">
         <div class="col">
-            <form class="card" action="{{route('package.update', $package_edit->id)}}" method="post">
+            <form class="card" action="{{route('package.update', $package_edit->course_id)}}" method="post">
                 @csrf
                 <div class="card-body">
                     <h3 class="card-title">Edit Package</h3>
@@ -56,7 +56,7 @@
                        <div class="form-row col-md-3">
                                 <div class="form-group">
                                     <label for="course_id">Course name</label>
-                                    <select id="course_id" class="form-control" name="course_id" required>
+                                    <select id="course_id" class="form-control" name="course_id" required readonly>
                                         @foreach($package_edit as $package)  
                                         <option value="{{$package_edit->course_id}}">
                                             {{ $package_edit->course->name }}
@@ -90,26 +90,26 @@
                             </div>
                         </div>
 
-                        <div class="form-row col-md-3">
+                     {{--   <div class="form-row col-md-3">
                                 <div class="form-group">
                                     <label for="package_id">Billable Item</label>
                                     <select id="package_id" class="form-control" name="billable_item_id" required>
-                                        @foreach($billable_item as $package)  
-                                        <option value="{{ $package->id }}">
-                                            {{ $package->item_name }}
+                                        @foreach($package_edit as $package)  
+                                        <option value="{{ $package->billable_item_id }}">
+                                            {{ $package->billable->item_name }}
                                         </option>
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
 
-                      {{--  <div class="form-row">
-                            <div class="form-group col-md-6">
+                         <div class="form-row col-md-3">
+                            <div class="form-group">
                                 <label for="inputAddress">Billable Item</label>
-                                <input id="inputAddress" type="number" class="form-control" name="billable_item_id"
-                                    placeholder="Enter Duration" value="{{$package_edit->billable_item_id}}" required>
+                                <input id="inputAddress" type="text" class="form-control" name="billable_item_id"
+                                    placeholder="Enter Duration" value="{{$package_edit->billable->item_name}}" required>
                             </div>
-                        </div> --}}
+                        </div> 
                     </div>
                 </div>
                 <div class="text-left card-footer">

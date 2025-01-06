@@ -80,7 +80,7 @@
                             <div class="form-row col-md-3">
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input id="" type="text" class="form-control" name="name[]"
+                                    <input id="" type="text" class="form-control" name="name"
                                         placeholder="Enter Name" value="" required>
                                 </div>
                             </div>
@@ -199,7 +199,7 @@
 
                 // Append the individual fields to the new input container
                 newInputContainer.appendChild(billableitemfieldcontainer);
-                newInputContainer.appendChild(namefieldcontainer);
+                // newInputContainer.appendChild(namefieldcontainer);
                 newInputContainer.appendChild(pricefieldcontainer);
                 newInputContainer.appendChild(netpricefieldcontainer);
                 newInputContainer.appendChild(discountfieldcontainer);
