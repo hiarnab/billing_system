@@ -11,7 +11,7 @@ class PackageController extends Controller
 {
     public function index()
     {
-       $packages = Package::with('course', 'billable')->get();
+        $packages = Package::with('course', 'billable')->get();
         return view('package.index',compact('packages'));
     }
 
@@ -29,7 +29,7 @@ class PackageController extends Controller
         foreach ($request->net_price as $index => $net_price) {
             $data [] = [
                 'course_id' => $request->course_id,
-                'name' => $request->name[$index],
+                'name' => $request->name,
                 'base_price' => $request->base_price[$index],
                 'discount_percentage' => $request->discount_percentage[$index],
                 'net_price' => $net_price,
@@ -64,9 +64,10 @@ class PackageController extends Controller
 
     public function edit($id)
     {
-        $package_edit = Package::where('id', $id)->first();
+        $package_edit = Package::with('billable')->where('id', $id)->first();
+        $package_name = Package::select('course_id')->distinct()->get();
         $billable_item = BillableItem::all();
-        return view('package.edit',compact('package_edit', 'billable_item'));
+        return view('package.edit',compact('package_edit', 'billable_item', 'package_name'));
     }
 
     public function update(Request $request,$id)
@@ -91,8 +92,7 @@ class PackageController extends Controller
     public function view($course_id)
     {
         // return $course_id;
-        $package_view = Package::where('course_id', $course_id)->get();
-        $billable_item = BillableItem::all();
-        return view('package.view',compact('package_view', 'billable_item'));
+         $package_view = Package::with('billable')->where('course_id', $course_id)->get();
+        return view('package.view',compact('package_view'));
     }
 }

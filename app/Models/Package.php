@@ -18,12 +18,11 @@ class Package extends Model
     public function course()
     {
         return $this->belongsTo(Course::class, 'course_id');
-
     }
 
     public function billable()
     {
-        return $this->belongsTo(BillableItem::class, 'billable_item_id');
+        return $this->belongsTo(BillableItem::class, 'billable_item_id', 'id');
     }
 }
 

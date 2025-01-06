@@ -91,7 +91,7 @@
                                                     <td>{{ $package->discount_percentage}}</td>
                                                     <td>{{ $package->net_price}}</td>
                                                     <td>
-                                                        <a href="{{route('package.view', $package->course_id)}}"
+                                                        <a href="{{route('package.view', [$package->course_id])}}"
                                                             class="btn btn-info d-none d-sm-inline-block">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                 class="icon icon-tabler icon-tabler-edit" width="24"
