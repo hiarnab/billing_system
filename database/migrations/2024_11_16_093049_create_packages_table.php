@@ -19,6 +19,8 @@ return new class extends Migration
             $table->decimal('discount_percentage', 5, 2)->default(0); // Discount if any
             $table->decimal('net_price', 10, 2);
             $table->timestamps();
+            // $table->unsignedBigInteger('billable_item_id');
+            // $table->foreign('billable_item_id')->references('id')->on('packages')->onDelete('cascade')->after('course_id');
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('restrict');
         });
     }

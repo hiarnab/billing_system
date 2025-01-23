@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Str;
 
 class CourseController extends Controller
 {
@@ -33,7 +33,8 @@ class CourseController extends Controller
         $entity->session = $request->session;
         $entity->duration = $request->duration;
         $entity->save();
-        return redirect()->back()->with('success', 'course add successfully');
+        flash('course add successfully', 'success');
+        return redirect()->route('course.index');
     }
 
     public function edit($id)
@@ -50,7 +51,8 @@ class CourseController extends Controller
         $course_update->session = $request->session;
         $course_update->duration = $request->duration;
         $course_update->save();
-        return redirect()->back()->with('success', 'Course update successfully');
+        flash( 'Course update successfully', 'success');
+        return redirect()->route('course.index');
     }
 
     public function view($id)

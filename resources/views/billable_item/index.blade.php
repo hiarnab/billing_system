@@ -21,7 +21,7 @@
                     <!-- Page title actions -->
                     <div class="col-auto ms-auto d-print-none">
                         <div class="btn-list">
-                            <a href="{{ route('billable.create') }}" class="btn btn-primary d-none d-sm-inline-block">
+                            <a href="{{ route('billable-item.create') }}" class="btn btn-primary d-none d-sm-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -29,7 +29,7 @@
                                     <path d="M12 5l0 14" />
                                     <path d="M5 12l14 0" />
                                 </svg>
-                                Add New Billable Item
+                                Add Billable Item
                             </a>
 
                         </div>
@@ -57,7 +57,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-10">
-                                        <h3 class="h1">Services</h3>
+                                        <h3 class="h1">Billable Item</h3>
                                         <div class="markdown text-muted">
                                             Manage Billable item from here.
                                         </div>
@@ -71,9 +71,10 @@
                                             <tr>
                                                 <th class="w-1">Sl</th>
                                                 <th>Name</th>
-                                             {{--   <th>Package Name</th> --}}
                                                 <th>Amount</th>
-                                                <th>Gst</th>
+                                                <th>GST</th>
+                                                <th>Added On</th>
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -85,8 +86,17 @@
                                                   {{--  <td>{{ $billable_item->package->name }}</td> --}}
                                                     <td>{{ $billable_item->amount }}</td>
                                                     <td>{{ $billable_item->gst}}</td>
+                                                    <td>{{ $billable_item->created_at->format('d-m-Y') }}</td>
+
                                                     <td>
-                                                        <a href="{{route ('billable.edit', $billable_item->id)}}"
+                                                        @if ($billable_item->status == 1)
+                                                        <span class="badge bg-green-lt">Active</span></td>
+                                                    @else
+                                                        <span class="badge bg-red-lt">Disable</span></td>
+                                                    @endif
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{route ('billable-item.edit', $billable_item->id)}}"
                                                             class="btn btn-info d-none d-sm-inline-block">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                 class="icon icon-tabler icon-tabler-edit" width="24"
@@ -105,8 +115,18 @@
                                                             </svg>
                                                             Edit
                                                         </a>
+                                                        @if ($billable_item->status == 1)
+                                                            <a href="{{ route('billable-item.deactive', $billable_item->id) }}"
+                                                                class="btn btn-outline-danger d-none d-sm-inline-block">
+                                                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg>
+                                                                Deactivate</a>
+                                                        @else
+                                                            <a href="{{ route('billable-item.active', $billable_item->id) }}"
+                                                                class="btn btn-outline-success d-none d-sm-inline-block">
+                                                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg>Activate</a>
+                                                        @endif
                                                     </td>
-                                                    <td>
+                                                    {{-- <td>
                                                         <a href="{{route ('billable.delete', $billable_item->id)}}"
                                                             class="btn btn-info d-none d-sm-inline-block">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +146,7 @@
                                                             </svg>
                                                             Delete
                                                         </a>
-                                                    </td>
+                                                    </td> --}}
                                                 </tr>
                                             @endforeach
                                         </tbody>

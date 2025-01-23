@@ -18,7 +18,7 @@ class PackageController extends Controller
     public function create()
     {
         $courses = Course::all();
-        // $billable_item = Package::with('billable')->get();
+
         $billable_item = BillableItem::all();
         return view('package.create', compact('courses', 'billable_item'));
     }

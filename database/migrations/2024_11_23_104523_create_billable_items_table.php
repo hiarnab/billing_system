@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('billable_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('package_id');
+            // $table->unsignedBigInteger('package_id');
             $table->string('item_name'); // e.g., Tuition Fee, Study Material, Food Charges
-            $table->decimal('amount', 10, 2); // Amount for this item in the package
-            $table->decimal('gst', 10, 2)->default(0.0);
-        
-            $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
+            // $table->decimal('amount', 10, 2); // Amount for this item in the package
+            // $table->decimal('gst', 10, 2)->default(0.0);
+            // $table->decimal('discount')->default(0.0);
+            $table->boolean('status')->default(false);
+            // $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -16,50 +16,74 @@ class BillableItemController extends Controller
 
     public function create()
     {
-        $packages = Package::all();
-        return view('billable_item.create',compact('packages'));
+        // $packages = Package::all();
+        return view('billable_item.create');
     }
 
     public function store(Request $requeest)
     {
-        // $requeest->validate([
-        //     'package_id'=> 'required',
-        //     'item_name'=> 'required|string|max:255',
-        //     'amount' => 'required',
-        //     'gst' => 'required',
-        // ]);
+        $requeest->validate([
+            'item_name'=> 'required|string|max:255',
+            'amount' => 'required',
+            'gst' => 'required',
+        ]);
 
         $entity = new BillableItem();
-        // $entity->package_id = $requeest->package_id;
+
         $entity->item_name = $requeest->item_name;
         $entity->amount = $requeest->amount;
         $entity->gst = $requeest->gst;
         $entity->save();
-         return redirect()->back()->with('success', 'Billable item added successfully');
+
+        flash('Billable item added successfully', 'success');
+
+        return redirect()->back();
     }
 
     public function edit($id)
     {
         $billable_items_edit = BillableItem::where('id', $id)->first();
-        $packages = Package::all();
-        return view('billable_item.edit',compact('billable_items_edit', 'packages'));
+
+        return view('billable_item.edit',compact('billable_items_edit'));
     }
 
     public function update(Request $request,$id)
     {
         $billable_update = BillableItem::where('id', $id)->first();
-        // $billable_update->package_id = $request->package_id;
+
+        if(!$billable_update){
+            flash('Item not found', 'error');
+            return redirect()->route('billable-item.index');
+        }
+
         $billable_update->item_name = $request->item_name;
         $billable_update->amount = $request->amount;
         $billable_update->gst = $request->gst;
         $billable_update->save();
-        return redirect()->back()->with('success', 'Bill Item Update successfully');
+
+        flash('Billable Item Update successfully', 'success');
+        return redirect()->back();
     }
 
-    public function destroy($id)
+    public function active($id)
     {
-        $billable_items = BillableItem::findorFail($id);
-        $billable_items->delete();
-        return redirect()->back()->with('success', 'Billable item deleted sucessfully');
+        $question = BillableItem::findOrFail($id);
+        $question->status = 1;
+        $question->save();
+        return redirect()->back()->with('success', 'Course active successfully');
     }
+
+    public function deactive($id)
+    {
+        $question = BillableItem::findorFail($id);
+        $question->status = 0;
+        $question->save();
+        return redirect()->back()->with('success', 'Course deactive successfully');
+    }
+    // public function destroy($id)
+    // {
+    //     $billable_items = BillableItem::findorFail($id);
+    //     $billable_items->delete();
+    //     return redirect()->back()->with('success', 'Billable item deleted sucessfully');
+    // }
 }

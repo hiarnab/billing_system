@@ -7,8 +7,7 @@
         </button>
         <h1 class="navbar-brand navbar-brand-autodark">
             <a href=".">
-                <img src="#" width="110" height="32" alt="Tabler"
-                    class="navbar-brand-image">
+                <img src="#" width="110" height="32" alt="Tabler" class="navbar-brand-image">
             </a>
         </h1>
 
@@ -33,14 +32,14 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('course.index') }}">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-brand-open-source">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M9 11l3 3l8 -8" />
-                                <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
+                                <path
+                                    d="M12 3a9 9 0 0 1 3.618 17.243l-2.193 -5.602a3 3 0 1 0 -2.849 0l-2.193 5.603a9 9 0 0 1 3.617 -17.244z" />
                             </svg>
                         </span>
                         <span class="nav-link-title">
@@ -50,16 +49,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('package.index')}}">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M9 11l3 3l8 -8" />
-                                <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
-                            </svg>
+                    <a class="nav-link" href="{{ route('package.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-package"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12l0 9" /><path d="M12 12l-8 -4.5" /><path d="M16 5.25l-8 4.5" /></svg>
                         </span>
                         <span class="nav-link-title">
                             Package
@@ -68,15 +60,21 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('billable.index')}}">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
+                    <a class="nav-link" href="{{ route('billable-item.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-list-details">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M9 11l3 3l8 -8" />
-                                <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
+                                <path d="M13 5h8" />
+                                <path d="M13 9h5" />
+                                <path d="M13 15h8" />
+                                <path d="M13 19h5" />
+                                <path
+                                    d="M3 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                                <path
+                                    d="M3 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
                             </svg>
                         </span>
                         <span class="nav-link-title">
@@ -86,9 +84,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('installment.index')}}">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block">
+                    <a class="nav-link" href="{{ route('installment.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -104,9 +101,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route ('student.list')}}">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block">
+                    <a class="nav-link" href="{{ route('student.list') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                 stroke-linecap="round" stroke-linejoin="round">

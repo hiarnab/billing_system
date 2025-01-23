@@ -59,7 +59,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-10">
-                                        <h3 class="h1">Services</h3>
+                                        <h3 class="h1">Courses</h3>
                                         <div class="markdown text-muted">
                                             Manage Courses from here.
                                         </div>
@@ -76,6 +76,7 @@
                                                 <th>Name</th>
                                                 <th>session</th>
                                                 <th>Duration </th>
+                                                <th>Created at </th>
                                                 <th>status </th>
                                                 <th>Action</th>
                                             </tr>
@@ -87,6 +88,7 @@
                                                     <td class="text-bold-500">{{ $course->name }}</td>
                                                     <td>{{ $course->session }}</td>
                                                     <td>{{ $course->duration }}</td>
+                                                    <td>{{ $course->created_at->format('d-m-Y H:m A') }}</td>
                                                     <td>
                                                         @if ($course->status == 'active')
                                                             <span class="badge bg-green-lt">{{ $course->status }}</span></td>
