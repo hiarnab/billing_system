@@ -92,6 +92,7 @@ class PackageController extends Controller
     public function view($course_id)
     {
         // return $course_id;
+        // $package_view = Package::where('course_id', $course_id)->get();
          $package_view = Package::with('billable')->where('course_id', $course_id)->get();
         return view('package.view',compact('package_view'));
     }
