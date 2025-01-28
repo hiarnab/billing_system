@@ -16,8 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id');
             $table->string('name');
             $table->decimal('base_price', 10, 2); // Base price of the package
-            $table->decimal('discount_percentage', 5, 2)->default(0); // Discount if any
+            // $table->decimal('discount_percentage', 5, 2)->default(0); // Discount if any
             $table->decimal('net_price', 10, 2);
+            $table->decimal('gst', 10, 2)->default(0.0);
             $table->timestamps();
             // $table->unsignedBigInteger('billable_item_id');
             // $table->foreign('billable_item_id')->references('id')->on('packages')->onDelete('cascade')->after('course_id');

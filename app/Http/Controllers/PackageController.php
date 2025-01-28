@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BillableItem;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Package;
 use App\Models\Course;
@@ -25,22 +26,34 @@ class PackageController extends Controller
 
     public function store(Request $request)
     {
+        $entity = new Package();
+        $entity->name = $request->name;
+        $entity->course_id  = $request->course_id;
+        // $entity->billable_item_id = $request->billable_id;
+        $entity->base_price = $request->base_price;
+        // $entity->discount_percentage = $request->discount_percentage;
+        $entity->net_price = $request->net_price;
+        $entity->save();
+
         $data = [];
-        foreach ($request->net_price as $index => $net_price) {
+        foreach ($request->net_price1 as $index => $net_price1) {
             $data [] = [
-                'course_id' => $request->course_id,
-                'name' => $request->name,
-                'base_price' => $request->base_price[$index],
-                'discount_percentage' => $request->discount_percentage[$index],
-                'net_price' => $net_price,
-                'billable_item_id' => $request->billable_item_id[$index],
+                // 'course_id' => $request->course_id,
+                // 'name' => $request->name,
+                // 'base_price' => $request->base_price[$index],
+                'package_id'=> $entity->id,
+                'discount' => $request->discount_percentage1[$index],
+                'net_price' => $net_price1,
+                'gst' => $request->gst1[$index],
+                'billable_id' => $request->billable1_item_id[$index],
                 // 'billable_item_id' => isset($request->billable_id[$index]) ? $request->billable_id[$index] : null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
         }
         // return $data;
-        Package::insert($data);
+        DB::table('package_billable_maps')->insert($data);
+        // Package::insert($data);
         return redirect()->back()->with('success', 'Package added successfully');
 
         // $request->validate([

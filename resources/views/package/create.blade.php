@@ -169,7 +169,7 @@
                         billableitemfieldcontainer.innerHTML = `
                     <div class="form-group">
                         <label for="billable_id">Billable Item</label>
-                        <select class="form-control" name="billable_item_id[]" required>
+                        <select class="form-control" name="billable1_item_id[]" required>
                             <option value="" disabled selected>Select Billable item</option>
                             @foreach ($billable_item as $item)
                             <option value="{{ $item->id }}">{{ $item->item_name }}</option>
@@ -187,13 +187,13 @@
                     </div>`;
 
                         // Base Price Field
-                        const pricefieldcontainer = document.createElement('div');
-                        pricefieldcontainer.className = 'form-row col-md-3';
-                        pricefieldcontainer.innerHTML = `
-                    <div class="form-group">
-                        <label for="base_price">Price</label>
-                        <input type="number" class="form-control" name="base_price[]" placeholder="Enter price" required>
-                    </div>`;
+                    //     const pricefieldcontainer = document.createElement('div');
+                    //     pricefieldcontainer.className = 'form-row col-md-3';
+                    //     pricefieldcontainer.innerHTML = `
+                    // <div class="form-group">
+                    //     <label for="base_price">Price</label>
+                    //     <input type="number" class="form-control" name="base_price[]" placeholder="Enter price" required>
+                    // </div>`;
 
                         // Net Price Field
                         const netpricefieldcontainer = document.createElement('div');
@@ -201,7 +201,16 @@
                         netpricefieldcontainer.innerHTML = `
                     <div class="form-group">
                         <label for="net_price">Net Price</label>
-                        <input type="number" class="form-control" name="net_price[]" placeholder="Enter net price" required>
+                        <input type="number" class="form-control" name="net_price1[]" placeholder="Enter net price" required>
+                    </div>`;
+
+                        // gst field
+                        const gstfieldcontainer = document.createElement('div');
+                        gstfieldcontainer.className = 'form-row col-md-3';
+                        gstfieldcontainer.innerHTML = `
+                    <div class="form-group">
+                        <label for="gst">Gst</label>
+                        <input type="number" class="form-control" name="gst1[]" placeholder="Enter gst number" required>
                     </div>`;
 
                         // Discount Percentage Field
@@ -210,14 +219,15 @@
                         discountfieldcontainer.innerHTML = `
                     <div class="form-group">
                         <label for="discount_percentage">Discount</label>
-                        <input type="number" class="form-control" name="discount_percentage[]" placeholder="Enter discount" required>
+                        <input type="number" class="form-control" name="discount_percentage1[]" placeholder="Enter discount" required>
                     </div>`;
 
                         // Append the individual fields to the new input container
                         newInputContainer.appendChild(billableitemfieldcontainer);
                         // newInputContainer.appendChild(namefieldcontainer);
-                        newInputContainer.appendChild(pricefieldcontainer);
+                        // newInputContainer.appendChild(pricefieldcontainer);
                         newInputContainer.appendChild(netpricefieldcontainer);
+                        newInputContainer.appendChild(gstfieldcontainer);
                         newInputContainer.appendChild(discountfieldcontainer);
 
                         // Create a Remove Icon

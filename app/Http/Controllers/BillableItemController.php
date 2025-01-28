@@ -25,19 +25,19 @@ class BillableItemController extends Controller
         $requeest->validate([
             'item_name'=> 'required|string|max:255',
             'amount' => 'required',
-            'gst' => 'required',
+            // 'gst' => 'required',
         ]);
 
         $entity = new BillableItem();
 
         $entity->item_name = $requeest->item_name;
         $entity->amount = $requeest->amount;
-        $entity->gst = $requeest->gst;
+        // $entity->gst = $requeest->gst;
         $entity->save();
 
         flash('Billable item added successfully', 'success');
 
-        return redirect()->back();
+        return redirect()->route('billable-item.index');
     }
 
     public function edit($id)
