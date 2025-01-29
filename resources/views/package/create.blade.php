@@ -150,7 +150,7 @@
         }
         //  });
     </script>
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             const plusIcon = document.querySelector('.fa-plus-square');
             const inputFieldsContainer = document.getElementById('input-fields');
@@ -222,6 +222,15 @@
                         <input type="number" class="form-control" name="discount_percentage1[]" placeholder="Enter discount" required>
                     </div>`;
 
+                        // Total Value Field (Read-Only)
+                        const totalValueFieldContainer = document.createElement('div');
+                    totalValueFieldContainer.className = 'form-row col-md-2';
+                    totalValueFieldContainer.innerHTML = `
+                    <div class="form-group">
+                        <label for="total_value">Total Value</label>
+                        <input type="text" class="form-control total-value" name="total_value1[]" placeholder="Total Value" readonly>
+                    </div>`;
+
                         // Append the individual fields to the new input container
                         newInputContainer.appendChild(billableitemfieldcontainer);
                         // newInputContainer.appendChild(namefieldcontainer);
@@ -229,6 +238,7 @@
                         newInputContainer.appendChild(netpricefieldcontainer);
                         newInputContainer.appendChild(gstfieldcontainer);
                         newInputContainer.appendChild(discountfieldcontainer);
+                        newInputContainer.appendChild(totalValueFieldContainer);
 
                         // Create a Remove Icon
                         const removeIcon = document.createElement('i');
@@ -240,6 +250,21 @@
                         inputFieldsContainer.appendChild(newInputContainer);
 
                         inputFieldCount++;
+
+                          // Attach event listeners to update total value
+                        function calculateTotal() {
+                        const netPrice = parseFloat(newInputContainer.querySelector('.net-price').value) || 0;
+                        const gst = parseFloat(newInputContainer.querySelector('.gst').value) || 0;
+                        const discount = parseFloat(newInputContainer.querySelector('.discount').value) || 0;
+
+                        let totalValue = netPrice + (netPrice * gst / 100) - (netPrice * discount / 100);
+                        newInputContainer.querySelector('.total-value').value = totalValue.toFixed(2);
+                    }
+
+                    // Ensure calculation is unique for each row
+                    newInputContainer.querySelector('.net-price').addEventListener('input', calculateTotal);
+                    newInputContainer.querySelector('.gst').addEventListener('input', calculateTotal);
+                    newInputContainer.querySelector('.discount').addEventListener('input', calculateTotal);
 
                         // Remove icon functionality
                         removeIcon.addEventListener('click', () => {
@@ -266,5 +291,148 @@
                 console.error('Input fields container not found!');
             }
         });
+    </script> --}}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const plusIcon = document.querySelector('.fa-plus-square');
+            const inputFieldsContainer = document.getElementById('input-fields');
+            let inputFieldCount = 0;
+    
+            // total value field
+            const finalTotalContainer = document.createElement('div');
+            finalTotalContainer.className = 'row mt-3';
+            finalTotalContainer.innerHTML = `
+            <div class="form-row col-md-3 offset-md-9">
+                <div class="form-group">
+                    <label for="final_total_value"><strong>Grand Total</strong></label>
+                    <input type="text" class="form-control final-total-value" name="final_total_value" placeholder="Grand Total" readonly>
+                </div>
+            </div>`;
+            inputFieldsContainer.after(finalTotalContainer); 
+    
+            function updateFinalTotal() {
+                let grandTotal = 0;
+                document.querySelectorAll('.total-value').forEach(input => {
+                    grandTotal += parseFloat(input.value) || 0;
+                });
+                document.querySelector('.final-total-value').value = grandTotal.toFixed(2);
+            }
+    
+            if (inputFieldsContainer) {
+                plusIcon.addEventListener('click', () => {
+                    if (inputFieldCount < 5) {
+                        const newInputContainer = document.createElement('div');
+                        newInputContainer.className = 'row mb-2';
+    
+                        // Billable Item Dropdown
+                        const billableitemfieldcontainer = document.createElement('div');
+                        billableitemfieldcontainer.className = 'form-row col-md-2';
+                        billableitemfieldcontainer.innerHTML = `
+                        <div class="form-group">
+                            <label for="billable_id">Billable Item</label>
+                            <select class="form-control" name="billable1_item_id[]" required>
+                                <option value="" disabled selected>Select Billable item</option>
+                                @foreach ($billable_item as $item)
+                                <option value="{{ $item->id }}">{{ $item->item_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>`;
+    
+                        // Net Price Field
+                        const netpricefieldcontainer = document.createElement('div');
+                        netpricefieldcontainer.className = 'form-row col-md-2';
+                        netpricefieldcontainer.innerHTML = `
+                        <div class="form-group">
+                            <label for="net_price">Net Price</label>
+                            <input type="number" class="form-control net-price" name="net_price1[]" placeholder="Enter net price" required>
+                        </div>`;
+    
+                        // GST Field
+                        const gstfieldcontainer = document.createElement('div');
+                        gstfieldcontainer.className = 'form-row col-md-2';
+                        gstfieldcontainer.innerHTML = `
+                        <div class="form-group">
+                            <label for="gst">GST (%)</label>
+                            <input type="number" class="form-control gst" name="gst1[]" placeholder="Enter GST" required>
+                        </div>`;
+    
+                        // Discount Field
+                        const discountfieldcontainer = document.createElement('div');
+                        discountfieldcontainer.className = 'form-row col-md-2';
+                        discountfieldcontainer.innerHTML = `
+                        <div class="form-group">
+                            <label for="discount_percentage">Discount (%)</label>
+                            <input type="number" class="form-control discount" name="discount_percentage1[]" placeholder="Enter discount" required>
+                        </div>`;
+    
+                        // Total Value Field (Hidden, but used for calculations)
+                        const totalValueFieldContainer = document.createElement('div');
+                        totalValueFieldContainer.className = 'form-row col-md-2';
+                        totalValueFieldContainer.innerHTML = `
+                        <div class="form-group">
+                            <label for="total_value">Total Value</label>
+                            <input type="text" class="form-control total-value" name="total_value1[]" placeholder="Total Value" readonly>
+                        </div>`;
+    
+                        // Create a Remove Icon
+                        const removeIcon = document.createElement('i');
+                        removeIcon.className = 'fa fa-minus-square icon remove';
+                        removeIcon.setAttribute('aria-hidden', 'true');
+    
+                        // Append all fields to the container
+                        newInputContainer.appendChild(billableitemfieldcontainer);
+                        newInputContainer.appendChild(netpricefieldcontainer);
+                        newInputContainer.appendChild(gstfieldcontainer);
+                        newInputContainer.appendChild(discountfieldcontainer);
+                        newInputContainer.appendChild(totalValueFieldContainer);
+                        newInputContainer.appendChild(removeIcon);
+    
+                        inputFieldsContainer.appendChild(newInputContainer);
+                        inputFieldCount++;
+    
+                        // Attach event listeners to update row total
+                        function calculateTotal() {
+                            const netPrice = parseFloat(newInputContainer.querySelector('.net-price').value) || 0;
+                            const gst = parseFloat(newInputContainer.querySelector('.gst').value) || 0;
+                            const discount = parseFloat(newInputContainer.querySelector('.discount').value) || 0;
+    
+                            let totalValue = netPrice + (netPrice * gst / 100) - (netPrice * discount / 100);
+                            newInputContainer.querySelector('.total-value').value = totalValue.toFixed(2);
+    
+                            updateFinalTotal();
+                        }
+    
+                        newInputContainer.querySelector('.net-price').addEventListener('input', calculateTotal);
+                        newInputContainer.querySelector('.gst').addEventListener('input', calculateTotal);
+                        newInputContainer.querySelector('.discount').addEventListener('input', calculateTotal);
+    
+                        // Remove icon functionality
+                        removeIcon.addEventListener('click', () => {
+                            inputFieldsContainer.removeChild(newInputContainer);
+                            inputFieldCount--;
+    
+                            updateFinalTotal(); 
+    
+                            if (inputFieldCount < 5) {
+                                plusIcon.style.pointerEvents = 'auto';
+                                plusIcon.style.opacity = '1';
+                            }
+                        });
+    
+                        // Disable the add icon if the limit is reached
+                        if (inputFieldCount >= 5) {
+                            plusIcon.style.pointerEvents = 'none';
+                            plusIcon.style.opacity = '0.5';
+                        }
+                    } else {
+                        alert('You can only add up to 5 input field sets.');
+                    }
+                });
+            } else {
+                console.error('Input fields container not found!');
+            }
+        });
     </script>
+    
 @endpush
