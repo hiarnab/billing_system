@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('package_id')->unsigned();
             $table->bigInteger('billable_id')->unsigned();
-            $table->decimal('amount', 5, 2)->default(0);
-            $table->decimal('discount', 5, 2)->default(0);
-            $table->decimal('gst', 5, 2)->default(0);
-            $table->decimal('net_price', 5, 2)->default(0);
+            $table->decimal('amount', 10, 2)->default(0.0);
+            $table->decimal('discount', 10, 2)->default(0);
+            $table->decimal('gst', 10, 2)->default(0.0);
+            $table->decimal('net_price', 10, 2)->default(0);
             $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
             $table->foreign('billable_id')->references('id')->on('billable_items')->onDelete('cascade');
             $table->timestamps();
