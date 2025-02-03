@@ -33,6 +33,7 @@ class PackageController extends Controller
         $entity->base_price = $request->base_price;
         // $entity->discount_percentage = $request->discount_percentage;
         $entity->net_price = $request->net_price;
+        $entity->gst = $request->gst;
         $entity->save();
 
         $data = [];
