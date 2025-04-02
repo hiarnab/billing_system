@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
@@ -52,13 +53,6 @@ Route::get('/package/edit/{id}',[PackageController::class, 'edit'])->name('packa
 Route::post('/package/update/{id}',[PackageController::class, 'update'])->name('package.update');
 Route::get('/package/delete/{id}',[PackageController::class, 'destroy'])->name('package.delete');
 
-
-
-
-
-
-
-
 // package_installment
 Route::get('package-installment/index',[PackageInstallmentController::class, 'index'])->name('installment.index');
 Route::get('package-installment/create',[PackageInstallmentController::class, 'create'])->name('installment.create');
@@ -68,6 +62,12 @@ Route::get('package-installment/edit/{id}',[PackageInstallmentController::class,
 Route::post('package-installment/update/{id}',[PackageInstallmentController::class, 'update'])->name('installment.update');
 Route::get('package-installment/delete/{id}',[PackageInstallmentController::class, 'destroy'])->name('installment.delete');
 // package_installment
+
+// admission route
+Route::get('admission/list',[AdmissionController::class, 'index'])->name('admission.list');
+Route::get('admission/create',[AdmissionController::class, 'create'])->name('admission.create');
+Route::post('admission/store',[AdmissionController::class, 'store'])->name('admission.store');
+// admission route
 
 });
 // Student route
