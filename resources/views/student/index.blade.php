@@ -73,6 +73,7 @@
                                         <thead>
                                             <tr>
                                                 <th class="w-1">Sl</th>
+                                                <th>Name</th>
                                                 <th>Address</th>
                                                 <th>Father name</th>
                                                 <th>Father mobile</th>
@@ -86,6 +87,7 @@
                                             @foreach ($students as $student)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $student->name }}</td>
                                                     <td class="text-bold-500">{{ $student->address }}</td>
                                                     <td>{{ $student->father_name }}</td>
                                                     <td>{{ $student->father_mobile }}</td>

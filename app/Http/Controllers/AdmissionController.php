@@ -38,4 +38,19 @@ class AdmissionController extends Controller
         return redirect()->route('admission.list');
         flash('Admission Added successfully');
     }
+
+    public function getpackageBycourse($course_id)
+    {  
+        $course = Package::where('course_id',$course_id)->get();
+        return response()->json($course);
+    }
+
+    public function getPackageDetails($packageId)
+    {
+        $package = Package::find($packageId);
+
+        if($packageId){
+            
+        }
+    }
 }

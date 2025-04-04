@@ -66,14 +66,14 @@
                                 <select class="form-select col-md-6" name="student_id" id="course">
                                     <option value="">Select Student</option>
                                     @foreach ($students as $student)
-                                    <option value="{{ $student->id }}">{{ $student->email }}</option>
+                                    <option value="{{ $student->id }}">{{ $student->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
 
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">Select Course</div>
-                                <select class="form-select col-md-6" name="course_id" id="course">
+                                <select class="form-select col-md-6" name="course_id" id="course" onchange="getPackagesForCourse(this.value)">
                                     <option value="">Select Course</option>
                                     @foreach ($courses as $course)
                                     <option value="{{ $course->id }}">{{ $course->name }}</option>
@@ -84,7 +84,7 @@
 
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">Select Package</div>
-                                <select class="form-select col-md-6" name="package_id" id="course">
+                                <select class="form-select col-md-6" name="package_id" id="package" onchange="getPackageDetails(this.value)">
                                     <option value="">Select Package</option>
                                     @foreach ($packages as $package)
                                     <option value="{{ $package->id }}">{{ $package->name }}</option>
@@ -92,28 +92,43 @@
                                 </select>
                             </div>
                             <br>
-                            
+
                             <br>
+
                             <div class="col-sm-12 col-md-6">
+                                <div class="form-group">GST</div>
+                                <input type="text" class="form-control" id="gst" name="gst" readonly>
+                            </div>
+                            <!-- <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="gst">GST (if any)</label>
                                     <input id="gst" type="number" class="form-control" name="gst" onchange="updatePrice()" placeholder="Enter GST if applicable" value="" required>
                                 </div>
-                            </div>
+                            </div> -->
                             <br>
-                            <div class="form-row col-md-6">
+
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">Amount</div>
+                                <input type="text" class="form-control" id="amount" name="amount" readonly>
+                            </div>
+                            <!-- <div class="form-row col-md-6">
                                 <div class="form-group">
                                     <label for="amount">Amount</label>
                                     <input id="net_price" class="form-control" name="amount">
                                 </div>
+                            </div> -->
+
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">Total</div>
+                                <input type="text" class="form-control" id="total" name="total" readonly>
                             </div>
 
-                            <div class="form-row col-md-6">
+                            <!-- <div class="form-row col-md-6">
                                 <div class="form-group">
                                     <label for="total">Total</label>
                                     <input id="net_price" class="form-control" name="total">
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="form-row col-md-6">
                                 <div class="form-group">
@@ -121,14 +136,14 @@
                                     <input id="net_price" class="form-control" name="grand_total">
                                 </div>
                             </div>
-                            
+
                             <br>
                             <hr>
 
-                            <div class="container">
+                            <!-- <div class="container">
                                 <i class="fa fa-plus-square" aria-hidden="true"></i>
                                 <div id="input-fields"></div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="text-left card-footer">
@@ -147,4 +162,60 @@
 @endsection
 
 @push('js')
+<script>
+    function getPackagesForCourse(courseId) {
+        if (courseId) {
+            // alert(courseId);
+            fetch(`/get-package-by-course/${courseId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const packageSelect = document.getElementById('package');
+                    packageSelect.innerHTML = '<option value="">Select Package</option>';
+
+                    if (data.length > 0) {
+                        data.forEach(package => {
+                            const option = document.createElement('option');
+                            option.value = package.id;
+                            option.textContent = package.name;
+                            packageSelect.appendChild(option);
+                        });
+                    } else {
+                        const option = document.createElement('option');
+                        option.value = '';
+                        option.textContent = 'No packages available';
+                        packageSelect.appendChild(option);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching packages:', error);
+                });
+        } else {
+            document.getElementById('package').innerHTML = '<option value="">Select Package</option>';
+        }
+    }
+
+    function getPackageDetails(packageId) {
+        if (packageId) {
+            // alert(courseId);
+            fetch(`/get-package-by-course/${packageId}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Assuming the response contains the necessary fields: gst, amount, total
+                    if (data) {
+                        document.getElementById('gst').value = data.gst;
+                        document.getElementById('amount').value = data.base_price ;
+                        document.getElementById('total').value = data.net_price  ;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching package details:', error);
+                });
+        } else {
+            // Clear fields if no package is selected
+            document.getElementById('gst').value = '';
+            document.getElementById('amount').value = '';
+            document.getElementById('total').value = '';
+        }
+    }
+</script>
 @endpush

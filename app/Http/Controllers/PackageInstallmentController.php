@@ -17,7 +17,8 @@ class PackageInstallmentController extends Controller
 
     public function create()
     {
-        $packages = Package::select('name')->distinct()->get();
+        $packages = Package::all();
+        // $packages = Package::select('name')->distinct()->get();
         return view('package_installment.create', compact('packages'));
     }
 
