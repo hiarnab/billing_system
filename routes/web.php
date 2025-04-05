@@ -68,7 +68,7 @@ Route::get('admission/list',[AdmissionController::class, 'index'])->name('admiss
 Route::get('admission/create',[AdmissionController::class, 'create'])->name('admission.create');
 Route::post('admission/store',[AdmissionController::class, 'store'])->name('admission.store');
 Route::get('/get-package-by-course/{course_id}', [AdmissionController::class, 'getpackageBycourse']);
-
+Route::get('/get-package-details/{package_id}',[AdmissionController::class, 'getPackageDetails']);
 // admission route
 
 });

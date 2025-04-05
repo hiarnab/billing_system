@@ -50,7 +50,13 @@ class AdmissionController extends Controller
         $package = Package::find($packageId);
 
         if($packageId){
-            
+            return response()->json([
+                'gst'=> $package->gst,
+                'base_price' => $package->base_price,
+                'net_price' => $package->net_price,
+            ]);
+        } else {
+            return response()->json(['error'=> 'package not found'], 404);
         }
     }
 }

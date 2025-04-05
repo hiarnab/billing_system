@@ -133,7 +133,7 @@
                             <div class="form-row col-md-6">
                                 <div class="form-group">
                                     <label for="grand_total">Grand Total</label>
-                                    <input id="net_price" class="form-control" name="grand_total">
+                                    <input id="grand_total" class="form-control" name="grand_total">
                                 </div>
                             </div>
 
@@ -196,15 +196,16 @@
 
     function getPackageDetails(packageId) {
         if (packageId) {
-            // alert(courseId);
-            fetch(`/get-package-by-course/${packageId}`)
+            // alert(packageId);
+            fetch(`/get-package-details/${packageId}`)
                 .then(response => response.json())
                 .then(data => {
                     // Assuming the response contains the necessary fields: gst, amount, total
                     if (data) {
-                        document.getElementById('gst').value = data.gst;
+                        document.getElementById('gst').value = data.gst; 
                         document.getElementById('amount').value = data.base_price ;
                         document.getElementById('total').value = data.net_price  ;
+                        document.getElementById('grand_total').value = data.net_price
                     }
                 })
                 .catch(error => {
@@ -215,6 +216,7 @@
             document.getElementById('gst').value = '';
             document.getElementById('amount').value = '';
             document.getElementById('total').value = '';
+            document.getElementById('grand_total').value = '';
         }
     }
 </script>
