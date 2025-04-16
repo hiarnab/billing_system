@@ -39,6 +39,7 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $entity = new Student(); 
+        $entity->name = $request->name;
         $entity->address = $request->address;
         $entity->father_name = $request->father_name;
         $entity->father_mobile = $request->father_mobile;
@@ -61,6 +62,7 @@ class StudentController extends Controller
     public function update(Request $request,$id)
     {
         $student_update = Student::where('id', $id)->first();
+        $student_update->name = $request->name;
         $student_update->address = $request->address;
         $student_update->father_name = $request->father_name;
         $student_update->father_mobile = $request->father_mobile;

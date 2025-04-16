@@ -73,22 +73,29 @@
                                         <thead>
                                             <tr>
                                                 <th class="w-1">Sl</th>
+                                                <th>Package Name</th>
+                                                <th>Course Name</th>
+                                                <th>Student Name</th>
                                                 <th>Amount</th>
                                                 <th>Gst</th>
                                                 <th>Total </th>
                                                 <th>Grand Total </th>
-                                                <th>status </th>
-                                                <th>Action</th>
+                                                <!-- <th>status </th> -->
+                                                <!-- <th>Action</th> -->
                                             </tr>
                                         </thead>
                                         <tbody class="table-tbody">
                                             @foreach ($admissions as $admission)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td class="text-bold-500">{{ $admission->name }}</td>
-                                                    <td>{{ $admission->session }}</td>
-                                                    <td>{{ $admission->duration }}</td>
-                                                    <td>{{ $admission->created_at->format('d-m-Y H:m A') }}</td>
+                                                    <td>{{ $admission->package->name }}</td>
+                                                    <td>{{ $admission->course->name }}</td>
+                                                    <td>{{ $admission->student->name }}</td>
+                                                    <td>{{ $admission->amount }}</td>
+                                                    <td>{{ $admission->gst}}</td>
+                                                    <td>{{ $admission->total }}</td>
+                                                    <td>{{ $admission->total }}</td>
+                                                    <!-- <td>{{ $admission->created_at->format('d-m-Y H:m A') }}</td> -->
                                                     <td>
                                                         @if ($admission->status == 'active')
                                                             <span class="badge bg-green-lt">{{ $admission->status }}</span></td>

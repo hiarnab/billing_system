@@ -9,13 +9,20 @@
 <div class="page-wrapper">
     <div class="page-body">
         <div class="container-xl">
-            <div class="col-md-6">
+            <div class="col">
                 <form class="card" action="{{route ('student.store')}}" method="post">
                     @csrf
                     <div class="card-body">
                         <h3 class="card-title">Add Student</h3>
                         <div class="row row-cards">
-                
+
+                            <div class="form-row col-md-6">
+                                <div class="form-group">
+                                    <label for="amount">Name</label>
+                                    <input id="" type="text" class="form-control" name="name"
+                                        placeholder="Enter name" value="" required>
+                                </div>
+                            </div>
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
