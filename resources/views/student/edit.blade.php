@@ -13,6 +13,14 @@
                     <div class="card-body">
                         <h3 class="card-title">Edit Student</h3>
                         <div class="row row-cards">
+
+                        <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputName">Name</label>
+                                    <input id="inputName" type="text" class="form-control" name="name"
+                                        placeholder="Enter name" value="{{$student_edit->name}}" required>
+                                </div>
+                            </div>
             
                             <div class="form-row">
                                 <div class="form-group col-md-6">

@@ -59,4 +59,11 @@ class AdmissionController extends Controller
             return response()->json(['error'=> 'package not found'], 404);
         }
     }
+
+    public function edit($id)
+    {
+        $admission_edit = Admission::where('id',$id)->first();
+        $students = Student::all();
+        return view('admission.edit',compact('admission_edit','students'));
+    }
 }
