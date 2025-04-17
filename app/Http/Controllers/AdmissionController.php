@@ -35,8 +35,8 @@ class AdmissionController extends Controller
         $entity->total = $request->total;
         $entity->grand_total = $request->grand_total;
         $entity->save();
-        return redirect()->route('admission.list');
         flash('Admission Added successfully');
+        return redirect()->route('admission.list');
     }
 
     public function getpackageBycourse($course_id)
