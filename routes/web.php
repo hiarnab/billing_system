@@ -92,4 +92,5 @@ Route::post('/loggin',[LoginController::class,'loggedin'])->name('login.submit')
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 // login route
 
+Route::get('/send-test-sms', [ServiceController::class, 'sendTestSms']);
 
