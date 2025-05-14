@@ -13,7 +13,7 @@ class AdmissionController extends Controller
     public function index()
     {
         $admissions = Admission::paginate(5);
-        return view('admission.index', compact('admissions'));
+       return view('admission.index', compact('admissions'));
     }
 
     public function create()
@@ -58,5 +58,11 @@ class AdmissionController extends Controller
         } else {
             return response()->json(['error'=> 'package not found'], 404);
         }
+    }
+
+    public function view($id)
+    {
+        $admission_view = Admission::with('student')->find($id);
+        return view('admission.view',compact('admission_view'));
     }
 }
