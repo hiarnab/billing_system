@@ -173,7 +173,7 @@
         });
         document.querySelector('.final-total-value').value = grandTotal.toFixed(2);
 
-        if (grandTotal <  parseFloat(netPrice.value)) {
+        if (grandTotal <= parseFloat(netPrice.value)) {
             // alert('hi');
             submitButton.disabled = false;
         } else {

@@ -51,7 +51,7 @@
                                         <label for="inputAddress">Student Name</label>
                                         <input id="inputAddress" type="text" class="form-control" name="name"
                                             placeholder="Enter Name" value="{{ $admission_view->student->name }}" required>
-                                        <input type="hidden" name="id" value="">
+                                        <input type="hidden" name="id" value="{{ $admission_view->id }}">
                                     </div>
                                 </div>
                                 <br>
@@ -59,22 +59,76 @@
                                     <div class="form-group">
                                         <label for="inputAddress">Address</label>
                                         <input id="inputAddress" type="text" class="form-control" name="session"
-                                            placeholder="Enter session" value="{{ $admission_view->student->address }}" required>
+                                            placeholder="Enter session" value="{{ $admission_view->student->address }}"
+                                            required>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="inputAddress">Course Duration</label>
+                                        <label for="inputAddress">Phone</label>
                                         <input id="inputAddress" type="number" class="form-control" name="duration"
-                                            placeholder="Enter Duration" value="{{ $admission_view->duration }}" required>
+                                            placeholder="Enter Duration" value="{{ $admission_view->student->mobile_no }}"
+                                            required>
                                     </div>
                                 </div>
+
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="inputAddress">Admission Date</label>
+                                        <input id="inputAddress" type="text" class="form-control" name="duration"
+                                            placeholder="Enter Duration" value="{{ $admission_view->created_at }}" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="inputAddress">Course Name</label>
+                                        <input id="inputAddress" type="text" class="form-control" name="duration"
+                                            placeholder="Enter Duration" value="{{ $admission_view->course->name }}"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="inputAddress">Package Name</label>
+                                        <input id="inputAddress" type="text" class="form-control" name="duration"
+                                            placeholder="Enter Duration" value="{{ $admission_view->package->name }}"
+                                            required>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                        <div class="text-left card-footer">
+                        {{-- <div class="text-left card-footer">
                             <button type="submit" class="btn btn-primary">Update Course</button>
+                        </div> --}}
+
+                        <h2 class="page-title">
+                            Package Installition
+                        </h2>
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="inputAddress">Admission price</label>
+                                <input id="inputAddress" type="text" class="form-control" name="duration"
+                                    placeholder="Enter Duration" value="{{ $admission_view->amount }}" readonly>
+                            </div>
                         </div>
+
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                @foreach ($admission_view as $installment)
+                                    <label for="inputAddress">installment 1</label>
+                                    <input id="inputAddress" type="text" class="form-control" name="duration"
+                                        placeholder="Enter Duration" value="{{ $admission_view->package->amount }}"
+                                        readonly>
+                                @endforeach
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>
