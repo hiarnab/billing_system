@@ -65,8 +65,13 @@ class AdmissionController extends Controller
     {
          $admission_view = Admission::with('student', 'course','package')->find($id);
 
-         $package = PackageInstallment::all();
-       return  $package_installment = Admission::where('id',$id)->where('package_id',$package->package_id)->get();
-        return view('admission.view',compact('admission_view'));
+        if ($admission_view) {
+            $admission_id = Admission::where('id',$id)->first();
+            $package_installment = PackageInstallment::where('package_id', $admission_id->package_id)->get();
+        } else {
+            return response()->json(['admission'=> 'admission not found'], 404);
+        }
+
+        return view('admission.view',compact('admission_view','package_installment')); 
     }
 }
