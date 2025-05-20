@@ -151,7 +151,7 @@
                                                 name="duration[]" placeholder="Enter Duration"
                                                 value="{{ $installment->amount }}" readonly >
 
-                                             <a href="{{ route('payment.full', [$installment->id]) }}"
+                                              <a href="{{ route('payment.full', [$installment->id]) }}"
                                                     class="btn btn-info d-none d-sm-inline-block">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                         class="icon icon-tabler icon-tabler-edit" width="24"

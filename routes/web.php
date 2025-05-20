@@ -76,6 +76,7 @@ Route::get('admission/view/{id}',[AdmissionController::class, 'view'])->name('ad
 // payment route
 Route::get('payment/index/{id}',[PaymentController::class,'payment'])->name('payment.list');
 Route::get('payment/full/{id}',[PaymentController::class, 'FullPayment'])->name('payment.full');
+Route::post('payment/submit',[PaymentController::class,'Full_payment_complete'])->name('payment.submit');
 // payment route
 
 });
