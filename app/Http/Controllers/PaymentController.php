@@ -10,11 +10,12 @@ use App\Models\Admission;
 
 class PaymentController extends Controller
 {
-    protected $admissionId;
+    private $admissionId;
 
     public function payment($id)
     {
         $this->admissionId = $id;
+        session(['admission_id' => $id]);
         $admission_details = Admission::with('student', 'course', 'package')->where('id', $id)->first();
         $payments = PackageInstallment::where('package_id', $admission_details->package_id)->get();
         // return $payments;   
@@ -32,8 +33,9 @@ class PaymentController extends Controller
     {
         // $data = $this->getAdmissionPaymentDetails($id);
         // $admission_details = $data['admission_details'];
-        $id = $this->admissionId;
-        $admission_details = Admission::where('id',$id)->first();
+        $id = session('admission_id');
+        // $id = $this->admissionId;
+         $admission_details = Admission::where('id',$id)->first();
 
         $entity = new Payment();
         $entity->package_id = $request->package_id;
