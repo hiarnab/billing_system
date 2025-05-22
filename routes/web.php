@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
@@ -71,6 +72,14 @@ Route::get('/get-package-by-course/{course_id}', [AdmissionController::class, 'g
 Route::get('/get-package-details/{package_id}',[AdmissionController::class, 'getPackageDetails']);
 Route::get('admission/view/{id}',[AdmissionController::class, 'view'])->name('admission.view');
 // admission route
+
+// payment route
+Route::get('payment/index/{id}',[PaymentController::class,'payment'])->name('payment.list');
+Route::get('payment/full/{id}',[PaymentController::class, 'FullPayment'])->name('payment.full');
+Route::post('payment/submit',[PaymentController::class,'Full_payment_complete'])->name('payment.submit');
+Route::get('payment/partial/{id}',[PaymentController::class,'partial_payment'])->name('payment.partial');
+Route::post('payment/partial/submit',[PaymentController::class,'partial_payment_complete'])->name('payment.partial.submit');
+// payment route
 
 });
 // Student route

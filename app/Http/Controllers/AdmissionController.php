@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admission;
 use App\Models\Course;
 use App\Models\Package;
+use App\Models\PackageInstallment;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class AdmissionController extends Controller
 
     public function create()
     {
-        $courses = Course::all();
+        $courses = Course::all();   
         $packages = Package::all();
         $students = Student::all();
         return view('admission.add',compact('courses','packages', 'students'));
@@ -62,7 +63,15 @@ class AdmissionController extends Controller
 
     public function view($id)
     {
-        $admission_view = Admission::with('student')->find($id);
-        return view('admission.view',compact('admission_view'));
+         $admission_view = Admission::with('student', 'course','package')->find($id);
+
+        if ($admission_view) {
+            $admission_id = Admission::where('id',$id)->first();
+            $package_installment = PackageInstallment::where('package_id', $admission_id->package_id)->get();
+        } else {
+            return response()->json(['admission'=> 'admission not found'], 404);
+        }
+
+        return view('admission.view',compact('admission_view','package_installment')); 
     }
 }

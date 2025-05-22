@@ -11,6 +11,7 @@ class Admission extends Model
     'student_id',
     'course_id',
     'package_id',
+    'package_installment_id',
     'amount',
     'gst',
     'total',
@@ -32,5 +33,10 @@ class Admission extends Model
     public function student()
     {
         return $this->belongsTo(Student::class, 'student_id');
+    }
+
+    public function package_installmens()
+    {
+        return $this->belongsTo(PackageInstallment::class, 'package_installment_id');
     }
 }
