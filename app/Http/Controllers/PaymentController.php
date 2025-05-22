@@ -42,7 +42,7 @@ class PaymentController extends Controller
         $entity->package_installment_id = $request->package_installment_id;
         $entity->course_id  = $admission_details->course_id ;
         $entity->student_id = $admission_details->student_id;
-        $entity->user_id = Auth::id();;
+        $entity->user_id = Auth::id();
         $entity->payment_amount = "full";
         $entity->amount_paid = $request->amount_paid;
         $entity->amount_due = $request->amount_due;
@@ -50,9 +50,39 @@ class PaymentController extends Controller
         $entity->payment_transaction_image = $request->payment_transaction_image;
         $entity->mode_of_transaction = $request->payment_method;
         $entity->fine = $request->fine;
-        $entity->total_paid_amount = $request->amount_paid;
+        $entity->total_paid_amount = $request->amount_paid;  
         $entity->save();
         flash('Payment has been sucessfull');
+        return redirect()->back();
+    }
+
+    public function partial_payment($id)
+    {
+        $admission_fees = PackageInstallment::where('id',$id)->first();
+        return view('payment.partial_payment',compact('admission_fees'));
+    }
+
+    public function partial_payment_complete(Request $request)
+    {
+         $id = session('admission_id');
+         $admission_details = Admission::where('id',$id)->first();
+
+        $entity = new Payment();
+        $entity->package_id = $request->package_id;
+        $entity->package_installment_id = $request->package_installment_id;
+        $entity->course_id  = $admission_details->course_id ;
+        $entity->student_id = $admission_details->student_id;
+        $entity->user_id = Auth::id();
+        $entity->payment_amount = "part";
+        $entity->amount_paid = $request->pay_installment;
+        $entity->amount_due = $request->amount_paid - $request->pay_installment;
+        $entity->payment_transaction_no = 'TXN' . time() . rand(1000, 9999);
+        $entity->payment_transaction_image = $request->payment_transaction_image;
+        $entity->mode_of_transaction = $request->payment_method;
+        $entity->fine = $request->fine;
+        $entity->total_paid_amount = $request->pay_installment;  
+        $entity->save();
+        flash('Partial Payment has been sucessfull');
         return redirect()->back();
     }
 
