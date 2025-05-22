@@ -152,7 +152,7 @@
                                                 value="{{ $installment->amount }}" readonly >
 
                                               <a href="{{ route('payment.full', [$installment->id]) }}"
-                                                    class="btn btn-info d-none d-sm-inline-block">
+                                                    class="btn btn-info d-none d-sm-inline-block me-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                         class="icon icon-tabler icon-tabler-edit" width="24"
                                                         height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -172,7 +172,7 @@
                                                 </a>
 
                                              <a href="{{ route('payment.partial', [$installment->id]) }}"
-                                                    class="btn btn-info d-none d-sm-inline-block">
+                                                    class="btn btn-info d-none d-sm-inline-block me-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                         class="icon icon-tabler icon-tabler-edit" width="24"
                                                         height="24" viewBox="0 0 24 24" stroke-width="2"
