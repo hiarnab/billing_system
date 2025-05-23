@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'name'=> "krishna Maiti",
             'email'=> "superadmin@gmail.com",
             'password'=> Hash::make('superadmin@gmail.com'),
+            'role_id'=> 1,
         ]);
     }
 }

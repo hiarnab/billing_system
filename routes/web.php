@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\CourseController;
@@ -31,6 +32,16 @@ Route::post('course/update/{id}',[CourseController::class, 'update'])->name('cou
 
 Route::get('course/active/{id}',[CourseController::class, 'active'])->name('active.course');
 Route::get('course/deactive/{id}',[CourseController::class, 'deactive'])->name('deactive.course');
+// course route
+
+
+
+
+// user route
+Route::get('user/add',[UserController::class, 'create'])->name('user.add');
+// user route
+
+
 
 
 // billable_item
@@ -44,6 +55,8 @@ Route::get('billable-item/delete/{id}',[BillableItemController::class, 'destroy'
 
 Route::get('billable-item/active/{id}',[BillableItemController::class, 'active'])->name('billable-item.active');
 Route::get('billable-item/deactive/{id}',[BillableItemController::class, 'deactive'])->name('billable-item.deactive');
+// billable_item
+
 
 // package route
 Route::get('package/index',[PackageController::class,'index'])->name('package.index');
