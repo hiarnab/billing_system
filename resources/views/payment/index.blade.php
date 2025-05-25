@@ -1,19 +1,20 @@
 @extends('layout.admin.app')
 
 @push('css')
-<style>
-    .input_width{
-        width:80% !important;
+    <style>
+        .input_width {
+            width: 80% !important;
 
-    }
-    .installment_width{
-        width:200px;
-    }
-</style>
+        }
+
+        .installment_width {
+            width: 200px;
+        }
+    </style>
 @endpush
 
 @section('content')
-    <div class="page-wrapper">     
+    <div class="page-wrapper">
         <!-- page header -->
         <div class="page-header d-print-none">
             <div class="container-xl">
@@ -58,48 +59,50 @@
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label class="mb-2" for="inputAddress">Student Name :</label>
-                                        <input id="inputAddress" type="text" class="form-control input_width" name="name"
-                                            placeholder="Enter Name" value="{{ $admission_details->student->name }}" required>
+                                        <input id="inputAddress" type="text" class="form-control input_width"
+                                            name="name" placeholder="Enter Name"
+                                            value="{{ $admission_details->student->name }}" required>
                                         <input type="hidden" name="id" value="{{ $admission_details->id }}">
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label class="mb-2" for="inputAddress">Address :</label>
-                                        <input id="inputAddress" type="text" class="form-control input_width" name="session"
-                                            placeholder="Enter session" value="{{ $admission_details->student->address }}"
-                                            required>
+                                        <input id="inputAddress" type="text" class="form-control input_width"
+                                            name="session" placeholder="Enter session"
+                                            value="{{ $admission_details->student->address }}" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label class="mb-2" for="inputAddress">Phone :</label>
-                                        <input id="inputAddress" type="number" class="form-control input_width" name="duration"
-                                            placeholder="Enter Duration" value="{{ $admission_details->student->mobile_no }}"
-                                            required>
+                                        <input id="inputAddress" type="number" class="form-control input_width"
+                                            name="duration" placeholder="Enter Duration"
+                                            value="{{ $admission_details->student->mobile_no }}" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label class="mb-2" for="inputAddress">Admission Date :</label>
-                                        <input id="inputAddress" type="text" class="form-control input_width" name="duration"
-                                            placeholder="Enter Duration" value="{{ $admission_details->created_at }}" required>
+                                        <input id="inputAddress" type="text" class="form-control input_width"
+                                            name="duration" placeholder="Enter Duration"
+                                            value="{{ $admission_details->created_at }}" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label class="mb-2" for="inputAddress">Course Name :</label>
-                                        <input id="inputAddress" type="text" class="form-control input_width" name="duration"
-                                            placeholder="Enter Duration" value="{{ $admission_details->course->name }}"
-                                            required>
+                                        <input id="inputAddress" type="text" class="form-control input_width"
+                                            name="duration" placeholder="Enter Duration"
+                                            value="{{ $admission_details->course->name }}" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label class="mb-2" for="inputAddress">Package Name :</label>
-                                        <input id="inputAddress" type="text" class="form-control input_width" name="duration"
-                                            placeholder="Enter Duration" value="{{ $admission_details->package->name }}"
-                                            required>
+                                        <input id="inputAddress" type="text" class="form-control input_width"
+                                            name="duration" placeholder="Enter Duration"
+                                            value="{{ $admission_details->package->name }}" required>
                                     </div>
                                 </div>
                             </div>
@@ -116,9 +119,27 @@
                                 <div class="col-sm-12 col-md-3">
                                     <div class="form-group mb-3">
                                         <label class="mb-2" for="inputAddress">Admission price :</label>
-                                        <input id="inputAddress" type="text" class="form-control input_width" name="duration "
-                                            placeholder="Enter Duration" value="{{ $admission_details->amount }}" readonly>
+                                        <input id="inputAddress" type="text" class="form-control input_width"
+                                            name="duration " placeholder="Enter Duration"
+                                            value="{{ $admission_details->amount }}" readonly>
                                     </div>
+                                    <a href="{{ route('payment.full', [$installment->id]) }}"
+                                        class="btn btn-info d-none d-sm-inline-block me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit"
+                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none">
+                                            </path>
+                                            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1">
+                                            </path>
+                                            <path
+                                                d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z">
+                                            </path>
+                                            <path d="M16 5l3 3"></path>
+                                        </svg>
+                                        Pay Now
+                                    </a>
                                 </div>
                                 {{-- @foreach ($package_installment as $index => $installment)
                                     <div class="d-flex">
@@ -143,53 +164,52 @@
                                 @endforeach --}}
                                 @foreach ($payments as $index => $installment)
                                     <div class="form-group mb-3">
-                                        <label class="mb-2" for="inputAddress">Installment {{ $index + 1 }} :</label>
+                                        <label class="mb-2" for="inputAddress">Installment {{ $index + 1 }}
+                                            :</label>
 
                                         <div class="d-flex align-items-center">
 
-                                            <input id="inputAddress" type="text" class="form-control me-2 installment_width"
-                                                name="duration[]" placeholder="Enter Duration"
-                                                value="{{ $installment->amount }}" readonly >
+                                            <input id="inputAddress" type="text"
+                                                class="form-control me-2 installment_width" name="duration[]"
+                                                placeholder="Enter Duration" value="{{ $installment->amount }}" readonly>
 
-                                              <a href="{{ route('payment.full', [$installment->id]) }}"
-                                                    class="btn btn-info d-none d-sm-inline-block">
-                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="icon icon-tabler icon-tabler-edit" width="24"
-                                                        height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                        stroke="currentColor" fill="none" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none">
-                                                        </path>
-                                                        <path
-                                                            d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1">
-                                                        </path>
-                                                        <path
-                                                            d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z">
-                                                        </path>
-                                                        <path d="M16 5l3 3"></path>
-                                                    </svg>
-                                                    Pay Now
-                                                </a>
+                                            <a href="{{ route('payment.full', [$installment->id]) }}"
+                                                class="btn btn-info d-none d-sm-inline-block me-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    class="icon icon-tabler icon-tabler-edit" width="24"
+                                                    height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" fill="none" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none">
+                                                    </path>
+                                                    <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1">
+                                                    </path>
+                                                    <path
+                                                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z">
+                                                    </path>
+                                                    <path d="M16 5l3 3"></path>
+                                                </svg>
+                                                Pay Now
+                                            </a>
 
-                                             <a href="{{ route('payment.partial', [$installment->id]) }}"
-                                                    class="btn btn-info d-none d-sm-inline-block">
-                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="icon icon-tabler icon-tabler-edit" width="24"
-                                                        height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                        stroke="currentColor" fill="none" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none">
-                                                        </path>
-                                                        <path
-                                                            d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1">
-                                                        </path>
-                                                        <path
-                                                            d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z">
-                                                        </path>
-                                                        <path d="M16 5l3 3"></path>
-                                                    </svg>
-                                                    Pay Installment
-                                                </a>
+                                            <a href="{{ route('payment.partial', [$installment->id]) }}"
+                                                class="btn btn-info d-none d-sm-inline-block me-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    class="icon icon-tabler icon-tabler-edit" width="24"
+                                                    height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" fill="none" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none">
+                                                    </path>
+                                                    <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1">
+                                                    </path>
+                                                    <path
+                                                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z">
+                                                    </path>
+                                                    <path d="M16 5l3 3"></path>
+                                                </svg>
+                                                Pay Installment
+                                            </a>
 
                                             <button type="button" class="btn btn-success">Payment History</button>
                                         </div>
