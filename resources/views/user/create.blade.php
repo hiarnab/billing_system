@@ -28,7 +28,7 @@
         <div class="page-body">
             <div class="container-xl">
                 <div class="col-8">
-                    <form class="card" action="{{ route('course.store') }}" method="post">
+                    <form class="card" action="{{ route('user.store') }}" method="post">
                         @csrf
                         <div class="card-body">
                             <h3 class="card-title">Add User</h3>
@@ -68,7 +68,7 @@
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="userType">User Type</label>
-                                        <select id="userType" class="form-control" name="user_type" required>
+                                        <select id="userType" class="form-control" name="role_id" required>
                                             <option value="">Select user type</option>
                                             @foreach($roles as $role)
                                             <option value="{{ $role->id }}">{{$role->name}}</option>

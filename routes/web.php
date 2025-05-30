@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\BillableItemController;
+use App\Http\Controllers\ExcutiveController;
 use App\Http\Controllers\PackageInstallmentController;
 use App\Http\Controllers\StudentController;
 use App\Models\PackageInstallment;
@@ -22,7 +23,7 @@ Route::middleware(['isadmin'])->group(function(){
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
 // course route
-Route::get('course/index',[CourseController::class,'index'])->name('course.index');
+Route::get('course/index',[CourseController::class,'index'])->name('course.index')->middleware(['auth', 'can:view-course']);
 
 Route::get('course/add',[CourseController::class,'create'])->name('course.add');
 Route::post('course/store',[CourseController::class, 'store'])->name('course.store');
@@ -39,6 +40,8 @@ Route::get('course/deactive/{id}',[CourseController::class, 'deactive'])->name('
 
 // user route
 Route::get('user/add',[UserController::class, 'create'])->name('user.add');
+Route::post('user/store',[UserController::class, 'store'])->name('user.store');
+Route::get('user/index',[UserController::class, 'index'])->name('user.index');
 // user route
 
 
@@ -108,6 +111,16 @@ Route::post('/student/update/{id}',[StudentController::class, 'update'])->name('
 Route::get('/student/destroy',[StudentController::class, 'destroy'])->name('student.delete');
 
 // student route
+
+
+// excutive route
+Route::middleware(['auth', 'executive'])->group(function () {
+    Route::get('/executive/dashboard', [ExcutiveController::class, 'index'])->name('excutive.dashboard');
+    // Add more executive routes here
+});
+
+// excutive route
+
 
 // login route
 Route::get('/login-view',[LoginController::class,'login_view'])->name('login.view');
