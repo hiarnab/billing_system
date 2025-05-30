@@ -18,12 +18,18 @@ Route::get('/', function () {
     return view('login.login');
 });
 
+Route::middleware(['auth', 'adminorexecutive'])->group(function () {
+    Route::get('course/index', [CourseController::class, 'index'])->name('course.index');
+});
+
+
+
 Route::middleware(['isadmin'])->group(function(){
 // dashboard route
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
 // course route
-Route::get('course/index',[CourseController::class,'index'])->name('course.index')->middleware(['auth', 'can:view-course']);
+// Route::get('course/index',[CourseController::class,'index'])->name('course.index');
 
 Route::get('course/add',[CourseController::class,'create'])->name('course.add');
 Route::post('course/store',[CourseController::class, 'store'])->name('course.store');
@@ -116,7 +122,6 @@ Route::get('/student/destroy',[StudentController::class, 'destroy'])->name('stud
 // excutive route
 Route::middleware(['auth', 'executive'])->group(function () {
     Route::get('/executive/dashboard', [ExcutiveController::class, 'index'])->name('excutive.dashboard');
-    // Add more executive routes here
 });
 
 // excutive route

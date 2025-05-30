@@ -13,8 +13,9 @@
 
         <div class="collapse navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav pt-lg-3">
+             
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route ('dashboard') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -26,10 +27,12 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Home
+                            Dashboard
                         </span>
                     </a>
                 </li>
+               
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('course.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -48,6 +51,7 @@
                     </a>
                 </li>
 
+                {{-- @can('isadmin') --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('package.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -58,6 +62,7 @@
                         </span>
                     </a>
                 </li>
+                {{-- @endcan --}}
 
                   <li class="nav-item">
                     <a class="nav-link" href="{{route ('user.index')}}">
@@ -69,7 +74,7 @@
                         </span>
                     </a>
                 </li>
-
+                
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('billable-item.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -93,6 +98,7 @@
                         </span>
                     </a>
                 </li>
+               
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('installment.index') }}">

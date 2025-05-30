@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-         Gate::define('course/index', function ($user) {
+         Gate::define('view-course', function ($user) {
         return in_array($user->role_id, [1,4]);
     });
     }
