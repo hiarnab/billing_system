@@ -24,7 +24,7 @@ class BillableItemController extends Controller
     {
         $requeest->validate([
             'item_name'=> 'required|string|max:255',
-            'amount' => 'required',
+            // 'amount' => 'required',
             // 'gst' => 'required',
         ]);
 
@@ -58,7 +58,7 @@ class BillableItemController extends Controller
 
         $billable_update->item_name = $request->item_name;
         $billable_update->amount = $request->amount;
-        $billable_update->gst = $request->gst;
+        // $billable_update->gst = $request->gst;
         $billable_update->save();
 
         flash('Billable Item Update successfully', 'success');

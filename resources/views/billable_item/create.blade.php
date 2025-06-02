@@ -41,21 +41,21 @@
                                     </div>
                                 </div>
                                 <br>
-                                <div class="col-sm-12 col-md-6">
+                                {{-- <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="inputAddress">Amount (INR)</label>
                                         <input id="inputAddress" type="number" class="form-control" name="amount"
                                             placeholder="Enter amount" value="" required>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <br>
-                                <div class="col-sm-12 col-md-6">
+                                {{-- <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="inputAddress">GST (If any)</label>
                                         <input id="inputAddress" type="number" class="form-control" name="gst"
                                             placeholder="Enter 0.0 if no GST" value="" required>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="text-left card-footer">

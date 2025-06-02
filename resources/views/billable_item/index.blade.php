@@ -71,9 +71,9 @@
                                             <tr>
                                                 <th class="w-1">Sl</th>
                                                 <th>Name</th>
-                                                <th>Amount</th>
+                                                {{-- <th>Amount</th>
                                                 <th>GST</th>
-                                                <th>Added On</th>
+                                                <th>Added On</th> --}}
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -84,9 +84,9 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td class="text-bold-500">{{ $billable_item->item_name }}</td>
                                                   {{--  <td>{{ $billable_item->package->name }}</td> --}}
-                                                    <td>{{ $billable_item->amount }}</td>
+                                                    {{-- <td>{{ $billable_item->amount }}</td>
                                                     <td>{{ $billable_item->gst}}</td>
-                                                    <td>{{ $billable_item->created_at->format('d-m-Y') }}</td>
+                                                    <td>{{ $billable_item->created_at->format('d-m-Y') }}</td> --}}
 
                                                     <td>
                                                         @if ($billable_item->status == 1)

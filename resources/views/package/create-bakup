@@ -77,36 +77,36 @@
                 </div>
             </div>
             <br>
-            {{-- <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-6">
                 <div class="form-group">
                     <label for="base_price">Base Price</label>
                     <input id="base_price" type="number" class="form-control" name="base_price" placeholder="Enter base price" value="" required onchange="updatePrice()">
                 </div>
-            </div> --}}
+            </div>
             <br>
-            {{-- <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-6">
                 <div class="form-group">
                     <label for="gst">GST (if any)</label>
                     <input id="gst" type="number" class="form-control" name="gst" onchange="updatePrice()" placeholder="Enter GST if applicable" value="" required>
                 </div>
-            </div> --}}
+            </div>
             <br>
-            {{-- <div class="form-row col-md-6">
+            <div class="form-row col-md-6">
                 <div class="form-group">
                     <label for="net_price">Net Price</label>
                     <input id="net_price" class="form-control" name="net_price" readonly>
                 </div>
-            </div> --}}
+            </div>
             <br>
             <hr>
-            {{-- <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-6">
                 <div class="form-group">Select Billable Item</div>
                 <select class="form-select col-md-6" name="billable_item_id[]">
                     @foreach ($billable_item as $item)
                     <option value="{{ $item->id }}">{{ $item->item_name }}</option>
                     @endforeach
                 </select>
-            </div> --}}
+            </div>
             <div class="container">
                 <i class="fa fa-plus-square" aria-hidden="true"></i>
                 <div id="input-fields"></div>

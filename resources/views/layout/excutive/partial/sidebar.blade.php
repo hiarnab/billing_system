@@ -49,7 +49,8 @@
                             Accounts
                         </span>
                     </a>
-                    @if (isAdminOrExecutive())
+                    {{-- @if (isAdminOrExecutive()) --}}
+                    {{-- @can('adminorexecutive') --}}
                       <a class="nav-link" href="{{ route('course.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -65,7 +66,8 @@
                             Course
                         </span>
                     </a>
-                    @endif
+                    {{-- @endcan --}}
+                    {{-- @endif --}}
                     
                     <div class="dropdown-menu">
                         <div class="dropdown-menu-columns">

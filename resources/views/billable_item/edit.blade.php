@@ -47,21 +47,21 @@
                                 </div>
                             </div>
                             <br>
-                            <div class="col-sm-12 col-md-6">
+                            {{-- <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="inputAddress">Amount</label>
                                     <input id="inputAddress" type="number" class="form-control" name="amount"
                                         placeholder="Enter amount" value="{{$billable_items_edit->amount}}" required>
                                 </div>
-                            </div>
+                            </div> --}}
                             <br>
-                            <div class="col-sm-12 col-md-6">
+                            {{-- <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="inputAddress">Gst</label>
                                     <input id="inputAddress" type="number" class="form-control" name="gst"
                                         placeholder="Enter gst" value="{{$billable_items_edit->gst}}" required>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="text-left card-footer">
