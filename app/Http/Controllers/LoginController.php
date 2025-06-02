@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -30,34 +31,17 @@ public function loggedin(Request $request)
 
     // Attempt to authenticate from `users` table
     $user = User::where('email', $credentials['email'])->first();
-    if ($user) {
+   if ($user) {
+    $storedHash = $user->password;
+
+    if (!empty($storedHash) && strlen($storedHash) === 60 && str_starts_with($storedHash, '$2y$')) {
         try {
-            // Attempt normal Bcrypt check
-            if (Hash::check($credentials['password'], $user->password)) {
-                // Optionally rehash if needed
-                if (Hash::needsRehash($user->password)) {
+            if (Hash::check($credentials['password'], $storedHash)) {
+                // Optionally rehash
+                if (Hash::needsRehash($storedHash)) {
                     $user->password = Hash::make($credentials['password']);
                     $user->save();
                 }
-
-                Auth::login($user);
-
-                // Redirect based on role
-                if ($user->role_id === 1) {
-                    return redirect()->route('dashboard'); // Admin
-                } elseif ($user->role_id === 4) {
-                    return redirect()->route('excutive.dashboard'); // Executive
-                } else {
-                    Auth::logout();
-                    return back()->withErrors(['email' => 'Unauthorized user role.']);
-                }
-            }
-        } catch (\RuntimeException $e) {
-            // Likely non-Bcrypt hash, fallback to MD5
-            if (md5($credentials['password']) === $user->password) {
-                // Rehash to Bcrypt
-                $user->password = Hash::make($credentials['password']);
-                $user->save();
 
                 Auth::login($user);
 
@@ -70,8 +54,15 @@ public function loggedin(Request $request)
                     return back()->withErrors(['email' => 'Unauthorized user role.']);
                 }
             }
+        } catch (\RuntimeException $e) {
+            Log::error('Hash check failed for user ID: ' . $user->id . ' | Hash: ' . $storedHash);
+            return back()->withErrors(['email' => 'Password error: ' . $e->getMessage()]);
         }
+    } else {
+        Log::warning('Invalid password hash format for user ID: ' . $user->id . ' | Hash: ' . $storedHash);
+        return back()->withErrors(['email' => 'Invalid password format in system. Please reset your password.']);
     }
+}
 
     // Attempt to authenticate from `students` table using student_guard
     $student = Student::where('email', $credentials['email'])->first();
