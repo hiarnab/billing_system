@@ -23,8 +23,8 @@ class CourseController extends Controller
     {
         $request->validate([
             'name'=> "required",
-            'duration'=> "required",
-            'session'=> "required",
+            // 'duration'=> "required",
+            // 'session'=> "required",
         ]);
 
         $entity = new Course();

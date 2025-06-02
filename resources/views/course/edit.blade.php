@@ -55,21 +55,21 @@
                                     </div>
                                 </div>
                                 <br>
-                                <div class="col-sm-12 col-md-6">
+                                {{-- <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="inputAddress">Session of Course</label>
                                         <input id="inputAddress" type="text" class="form-control" name="session"
                                             placeholder="Enter session" value="{{ $course_edit->session }}" required>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <br>
-                                <div class="col-sm-12 col-md-6">
+                                {{-- <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="inputAddress">Course Duration</label>
                                         <input id="inputAddress" type="number" class="form-control" name="duration"
                                             placeholder="Enter Duration" value="{{ $course_edit->duration }}" required>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="text-left card-footer">

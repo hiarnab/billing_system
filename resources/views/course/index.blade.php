@@ -74,9 +74,9 @@
                                             <tr>
                                                 <th class="w-1">Sl</th>
                                                 <th>Name</th>
-                                                <th>session</th>
+                                                {{-- <th>session</th>
                                                 <th>Duration </th>
-                                                <th>Created at </th>
+                                                <th>Created at </th> --}}
                                                 <th>status </th>
                                                 <th>Action</th>
                                             </tr>
@@ -86,9 +86,9 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td class="text-bold-500">{{ $course->name }}</td>
-                                                    <td>{{ $course->session }}</td>
+                                                    {{-- <td>{{ $course->session }}</td>
                                                     <td>{{ $course->duration }}</td>
-                                                    <td>{{ $course->created_at->format('d-m-Y H:m A') }}</td>
+                                                    <td>{{ $course->created_at->format('d-m-Y H:m A') }}</td> --}}
                                                     <td>
                                                         @if ($course->status == 'active')
                                                             <span class="badge bg-green-lt">{{ $course->status }}</span></td>
