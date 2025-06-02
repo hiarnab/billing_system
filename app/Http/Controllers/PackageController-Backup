@@ -52,8 +52,28 @@ class PackageController extends Controller
                 'updated_at' => now(),
             ];
         }
+        // return $data;
         DB::table('package_billable_maps')->insert($data);
+        // Package::insert($data);
         return redirect()->back()->with('success', 'Package added successfully');
+
+        // $request->validate([
+        // 'name'=> 'required',
+        // 'course_id' => 'required',
+        // 'base_price'=> 'required',
+        // 'discount_percentage' => 'required',
+        // 'net_price'=> 'required',
+        // ]);
+
+        // $entity = new Package();
+        // $entity->name = $request->name;
+        // $entity->course_id  = $request->course_id;
+        // $entity->billable_item_id = $request->billable_id;
+        // $entity->base_price = $request->price;
+        // $entity->discount_percentage = "80";
+        // $entity->net_price = $request->net_price;
+        // $entity->save();
+        // return redirect()->back()->with('success', 'Package added successfully');
     }
 
     public function edit($id)

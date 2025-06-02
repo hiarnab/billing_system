@@ -44,20 +44,20 @@
                 <div class="card-body">
                     <h3 class="card-title">view Package</h3>
                     <div class="row row-cards">
-                    @foreach($package_view as $view)
+                    {{-- @foreach($package_view as $view) --}}
                         <div class="form-row col-md-3">
                             <div class="form-group">
                                 <label for="inputAddress">Name</label>
                                 <input id="inputAddress" type="text" class="form-control" name="name"
-                                    placeholder="Enter Name" value="{{$view->name}}" required readonly>
-                                    <input type="hidden" name="id" value="{{$view->id}}">
+                                    placeholder="Enter Name" value="{{$package_view->name}}" required readonly>
+                                    <input type="hidden" name="id" value="{{$package_view->id}}">
                             </div>
                         </div>
                         <div class="form-row col-md-3">
                             <div class="form-group">
                                 <label for="inputAddress">Course name</label>
                                 <input id="inputAddress" type="text" class="form-control" name="course_id"
-                                    placeholder="Enter session" value="{{$view->course->name}}" required readonly>
+                                    placeholder="Enter session" value="{{$package_view->course->name}}" required readonly>
                             </div>
                         </div>
                        
@@ -65,7 +65,7 @@
                             <div class="form-group">
                                 <label for="inputAddress">Price</label>
                                 <input id="inputAddress" type="text" class="form-control" name="price"
-                                    placeholder="Enter Duration" value="{{$view->base_price}}" required readonly>
+                                    placeholder="Enter Duration" value="{{$package_view->base_price}}" required readonly>
                             </div>
                         </div>
 
@@ -73,17 +73,17 @@
                             <div class="form-group">
                                 <label for="inputAddress">Net Price</label>
                                 <input id="inputAddress" type="number" class="form-control" name="net_price"
-                                    placeholder="Enter Duration" value="{{$view->net_price}}" required readonly>
+                                    placeholder="Enter Duration" value="{{$package_view->net_price}}" required readonly>
                             </div>
                         </div>
 
-                        <div class="form-row col-md-3">
+                        {{-- <div class="form-row col-md-3">
                             <div class="form-group">
                                 <label for="inputAddress">Billable Item</label>
                                 <input id="inputAddress" type="text" class="form-control" name="billable_item_id"
                                     placeholder="Enter Duration" value="{{$view->billable->item_name}}" required readonly>
                             </div>
-                        </div>
+                        </div> --}}
 
                       {{--  <div class="form-row col-md-3">
                                 <div class="form-group">
@@ -100,9 +100,9 @@
                             </div> --}}
 
                         <div>
-                                <a href="{{route ('package.edit', $view->id)}}" class="btn btn-primary">Edit</a>
+                                <a href="{{route ('package.edit', $package_view->id)}}" class="btn btn-primary">Edit</a>
                          </div>
-                        @endforeach
+                        {{-- @endforeach --}}
                     </div>
                 </div>
             </form>

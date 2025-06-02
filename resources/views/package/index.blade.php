@@ -74,10 +74,11 @@
                                             <tr>
                                                 <th class="w-1">Sl</th>
                                                 <th>Name</th>
-                                                <th>Course name</th>
+                                                <th>Course Name</th>
+                                                <th>Package Name</th>
                                                 <th>Base price</th>
-                                                <th>Discount </th>
-                                                <th>Net price </th>
+                                                <th>Gst </th>
+                                                {{-- <th>Net price </th> --}}
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -87,9 +88,10 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td class="text-bold-500">{{ $package->name }}</td>
                                                     <td>{{ $package->course->name }}</td>
+                                                    <td>{{ $package->name }}</td>
                                                     <td>{{ $package->base_price }}</td>
-                                                    <td>{{ $package->discount_percentage}}</td>
-                                                    <td>{{ $package->net_price}}</td>
+                                                    <td>{{ $package->gst}}</td>
+                                                    {{-- <td>{{ $package->net_price}}</td> --}}
                                                     <td>
                                                         <a href="{{route('package.view', [$package->course_id])}}"
                                                             class="btn btn-info d-none d-sm-inline-block">
