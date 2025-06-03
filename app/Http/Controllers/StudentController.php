@@ -44,7 +44,7 @@ class StudentController extends Controller
         $entity->father_name = $request->father_name;
         $entity->father_mobile = $request->father_mobile;
         $entity->mobile_no = $request->mobile_no;  
-        $entity->scholar_no	= $request->scholar_no;
+        // $entity->scholar_no	= $request->scholar_no;
         $entity->email = $request->email;
         $entity->password = Hash::make($request->password);
         $entity->gender = $request->gender;
@@ -67,6 +67,7 @@ class StudentController extends Controller
         $student_update->father_name = $request->father_name;
         $student_update->father_mobile = $request->father_mobile;
         $student_update->mobile_no = $request->mobile_no;
+        $student_update->gender = $request->gender;
         $student_update->save();
 
         return redirect()->back()->with('success', 'Student update successfully');
