@@ -42,7 +42,7 @@
                                     <input id="inputAddress" type="number" class="form-control" name="mobile_no"
                                         placeholder="Enter session" value="{{$student_edit->mobile_no}}" required>
                                 </div>
-                            </div>
+                            </div>   
                         </div>
                     </div>
                     <div class="text-left card-footer">
