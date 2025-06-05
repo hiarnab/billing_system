@@ -35,6 +35,7 @@ class PackageController extends Controller
         foreach ($request->net_price1 as $index => $net_price1) {
             $data [] = [
                 'package_id'=> $entity->id,
+                'amount' => $request->final_total_value,
                 'discount' => $request->discount_percentage1[$index],
                 'net_price' => $net_price1,
                 'gst' => $request->gst1[$index],

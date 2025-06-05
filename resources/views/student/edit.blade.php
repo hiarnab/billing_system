@@ -12,7 +12,7 @@
                     @csrf
                     <div class="card-body">
                         <h3 class="card-title">Edit Student</h3>
-                        <div class="row row-cards">
+                        <div class="row row-cards">    
             
                             <div class="form-row">
                                 <div class="form-group col-md-6">
